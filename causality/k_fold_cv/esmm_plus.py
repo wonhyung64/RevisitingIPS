@@ -36,6 +36,8 @@ parser.add_argument("--lambda1", type=float, default=1.)
 parser.add_argument("--base-model", type=str, default="ncf")
 parser.add_argument("--device", type=str, default="none")
 parser.add_argument("--alpha", type=float, default=9999.)
+parser.add_argument("--depth", type=int, default=0)
+
 try:
     args = parser.parse_args()
 except:
@@ -65,6 +67,7 @@ else:
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device(device)
+depth = args.depth
 
 
 x_train, x_test = load_data(data_dir, dataset_name)
@@ -124,7 +127,7 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
 
 
     if base_model == "ncf":
-        model = SharedNCFPlus(num_users, num_items, embedding_k)
+        model = SharedNCFPlus(num_users, num_items, embedding_k, depth)
     elif base_model == "linearcf":
         model = SharedLinearCFPlus(num_users, num_items, embedding_k)
     model = model.to(device)

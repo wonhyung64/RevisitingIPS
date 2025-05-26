@@ -35,6 +35,7 @@ parser.add_argument("--data-dir", type=str, default="./data")
 parser.add_argument("--propensity", type=str, default="true")
 parser.add_argument("--lambda1", type=float, default=1.)
 parser.add_argument("--device", type=str, default="none")
+parser.add_argument("--depth", type=int, default=0)
 try:
     args = parser.parse_args()
 except:
@@ -58,6 +59,7 @@ device = args.device
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device(device)
+depth = args.depth
 
 
 x_train, x_test = load_data(data_dir, dataset_name)
@@ -116,7 +118,7 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
     x0_test_tensor = torch.LongTensor(x0_test).to(device)
 
 
-    model = SharedNCFPlus(num_users, num_items, embedding_k)
+    model = SharedNCFPlus(num_users, num_items, embedding_k, depth)
     model = model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
     inv_prop = torch.tensor([1.]).to(device)

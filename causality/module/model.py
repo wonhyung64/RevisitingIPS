@@ -52,23 +52,26 @@ class NCFPlus(nn.Module):
     """
     Neural Collaborative Filtering for Treated and ontrolled
     """
-    def __init__(self, num_users:int, num_items:int, embedding_k:int):
+    def __init__(self, num_users:int, num_items:int, embedding_k:int, depth:int=0):
         super(NCFPlus, self).__init__()
         self.num_users = num_users
         self.num_items = num_items
         self.embedding_k = embedding_k
+        self.depth = depth
         self.user_embedding = nn.Embedding(self.num_users, self.embedding_k)
         self.item_embedding = nn.Embedding(self.num_items, self.embedding_k)
-        self.y1 = nn.Sequential(
-            nn.Linear(self.embedding_k*2, self.embedding_k),
-            nn.ReLU(),
-            nn.Linear(self.embedding_k, 1, bias=False),
-        )
-        self.y0 = nn.Sequential(
-            nn.Linear(self.embedding_k*2, self.embedding_k),
-            nn.ReLU(),
-            nn.Linear(self.embedding_k, 1, bias=False),
-        )
+        layers_y1 = [nn.Linear(self.embedding_k*2, self.embedding_k), nn.ReLU()]
+        for _ in range(self.depth):
+            layers_y1.append(nn.Linear(self.embedding_k, self.embedding_k))
+            layers_y1.append(nn.ReLU())
+        layers_y1.append(nn.Linear(self.embedding_k, 1, bias=False))
+        self.y1 = nn.Sequential(*layers_y1)
+        layers_y0 = [nn.Linear(self.embedding_k*2, self.embedding_k), nn.ReLU()]
+        for _ in range(self.depth):
+            layers_y0.append(nn.Linear(self.embedding_k, self.embedding_k))
+            layers_y0.append(nn.ReLU())
+        layers_y0.append(nn.Linear(self.embedding_k, 1, bias=False))
+        self.y0 = nn.Sequential(*layers_y0)
 
     def forward(self, x):
         user_idx = x[:,0]
@@ -114,11 +117,12 @@ class SharedNCFPlus(nn.Module):
     """
     Neural Collaborative Filtering for Treated and Controlled with Embedding Sharing
     """
-    def __init__(self, num_users:int, num_items:int, embedding_k:int):
+    def __init__(self, num_users:int, num_items:int, embedding_k:int, depth:int=0):
         super(SharedNCFPlus, self).__init__()
         self.num_users = num_users
         self.num_items = num_items
         self.embedding_k = embedding_k
+        self.depth = depth
         self.user_embedding = nn.Embedding(self.num_users, self.embedding_k)
         self.item_embedding = nn.Embedding(self.num_items, self.embedding_k)
         self.ctr = nn.Sequential(
@@ -126,16 +130,18 @@ class SharedNCFPlus(nn.Module):
             nn.ReLU(),
             nn.Linear(self.embedding_k, 1, bias=False),
         )
-        self.y1 = nn.Sequential(
-            nn.Linear(self.embedding_k*2, self.embedding_k),
-            nn.ReLU(),
-            nn.Linear(self.embedding_k, 1, bias=False),
-        )
-        self.y0 = nn.Sequential(
-            nn.Linear(self.embedding_k*2, self.embedding_k),
-            nn.ReLU(),
-            nn.Linear(self.embedding_k, 1, bias=False),
-        )
+        layers_y1 = [nn.Linear(self.embedding_k*2, self.embedding_k), nn.ReLU()]
+        for _ in range(self.depth):
+            layers_y1.append(nn.Linear(self.embedding_k, self.embedding_k))
+            layers_y1.append(nn.ReLU())
+        layers_y1.append(nn.Linear(self.embedding_k, 1, bias=False))
+        self.y1 = nn.Sequential(*layers_y1)
+        layers_y0 = [nn.Linear(self.embedding_k*2, self.embedding_k), nn.ReLU()]
+        for _ in range(self.depth):
+            layers_y0.append(nn.Linear(self.embedding_k, self.embedding_k))
+            layers_y0.append(nn.ReLU())
+        layers_y0.append(nn.Linear(self.embedding_k, 1, bias=False))
+        self.y0 = nn.Sequential(*layers_y0)
 
     def forward(self, x):
         user_idx = x[:,0]
@@ -188,15 +194,16 @@ class NCF_AKBIPS_ExpPlus(nn.Module):
     """
     AKB-IPS with Neural Collaborative Filtering for Treated and Controlled
     """
-    def __init__(self, num_users:int, num_items:int, embedding_k:int=4, *args, **kwargs):
+    def __init__(self, num_users:int, num_items:int, embedding_k:int=4, depth:int=0, *args, **kwargs):
         super().__init__()
         self.num_users = num_users
         self.num_items = num_items
         self.embedding_k = embedding_k
+        self.depth = depth
         self.W = nn.Embedding(self.num_users, self.embedding_k)
         self.H = nn.Embedding(self.num_items, self.embedding_k)
         self.prediction_model = NCFPlus(
-            num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, *args, **kwargs)
+            num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, depth=self.depth, *args, **kwargs)
         self.weight_model = MF(
             num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, *args, **kwargs)
         self.epsilon = nn.Parameter(torch.rand(1,4096)) 

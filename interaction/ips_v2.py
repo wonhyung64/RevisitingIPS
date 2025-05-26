@@ -37,6 +37,7 @@ parser.add_argument("--lambda3", type=float, default=1.)
 parser.add_argument("--gamma", type=float, default=0.1)
 parser.add_argument("--G", type=int, default=1)
 parser.add_argument("--base-model", type=str, default="ncf")
+parser.add_argument("--depth", type=int, default=0)
 try:
     args = parser.parse_args()
 except:
@@ -62,6 +63,7 @@ base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device()
+depth = args.depth
 
 
 try:
@@ -92,7 +94,7 @@ total_batch = num_sample // batch_size
 
 
 if base_model == "ncf":
-    model = IpsV2(num_users, num_items, embedding_k)
+    model = IpsV2(num_users, num_items, embedding_k, depth=depth)
 elif base_model == "mf":
     model = IpsV2MF(num_users, num_items, embedding_k)
 model = model.to(device)
@@ -120,15 +122,15 @@ for epoch in range(1, num_epochs+1):
 
         prop_pred_all, _, __ =  model.propensity_model(x_sampled)
         inv_prop_all = 1/torch.clip(nn.Sigmoid()(prop_pred_all), gamma, 1)
-        prop_loss = F.binary_cross_entropy(1/inv_prop_all, sub_obs) * alpha
+        prop_loss = F.binary_cross_entropy(1/inv_prop_all, sub_obs) * lambda1
         pred, _, __ = model.prediction_model(x_sampled)
         pred = nn.Sigmoid()(pred)
         ips_loss = -torch.mean((sub_entire_y * torch.log(pred + 1e-6) + (1-sub_entire_y) * torch.log(1 - pred + 1e-6)) * inv_prop_all * sub_obs)
         pred_all, _, __ = model.prediction_model(x_sampled)
-        pred_all_loss = F.binary_cross_entropy(1/inv_prop_all * nn.Sigmoid()(pred_all), sub_entire_y) * beta
+        pred_all_loss = F.binary_cross_entropy(1/inv_prop_all * nn.Sigmoid()(pred_all), sub_entire_y) * lambda2
         ones_all = torch.ones(len(inv_prop_all)).unsqueeze(-1).to(device)
         w_all = torch.divide(sub_obs,1/inv_prop_all) - torch.divide((ones_all-sub_obs),(ones_all-(1/inv_prop_all)))
-        bmse_loss = (torch.mean(w_all * pred_all))**2 * eta
+        bmse_loss = (torch.mean(w_all * pred_all))**2 * lambda3
         total_loss = prop_loss + pred_all_loss + ips_loss + bmse_loss
         epoch_prop_loss += prop_loss
         epoch_pred_all_loss += pred_all_loss

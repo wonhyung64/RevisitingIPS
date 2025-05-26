@@ -38,6 +38,7 @@ parser.add_argument("--lambda3", type=float, default=1.)
 parser.add_argument("--gamma", type=float, default=0.1)
 parser.add_argument("--G", type=int, default=1)
 parser.add_argument("--base-model", type=str, default="ncf")
+parser.add_argument("--depth", type=int, default=0)
 try:
     args = parser.parse_args()
 except:
@@ -63,6 +64,7 @@ base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device()
+depth = args.depth
 
 
 wandb_login = False
@@ -94,7 +96,7 @@ total_batch = num_sample // batch_size
 
 
 if base_model == "ncf":
-    model = IpsV2(num_users, num_items, embedding_k)
+    model = IpsV2(num_users, num_items, embedding_k, depth=depth)
 elif base_model == "mf":
     model = IpsV2MF(num_users, num_items, embedding_k)
 model = model.to(device)

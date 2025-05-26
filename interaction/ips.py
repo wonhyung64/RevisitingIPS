@@ -31,6 +31,7 @@ parser.add_argument("--evaluate-interval", type=int, default=50)
 parser.add_argument("--top-k-list", type=list, default=[1,3,5,7,10])
 parser.add_argument("--data-dir", type=str, default="./data")
 parser.add_argument("--base-model", type=str, default="ncf")
+parser.add_argument("--depth", type=int, default=0)
 try:
     args = parser.parse_args()
 except:
@@ -51,6 +52,7 @@ base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device()
+depth = args.depth
 
 
 wandb_login = False
@@ -114,7 +116,7 @@ for epoch in range(1, num_epochs+1):
 
 
 if base_model == "ncf":
-    model = NCF(num_users, num_items, embedding_k)
+    model = NCF(num_users, num_items, embedding_k, depth=depth)
 elif base_model == "mf":
     model = MF(num_users, num_items, embedding_k)
 model = model.to(device)

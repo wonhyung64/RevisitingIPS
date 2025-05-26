@@ -27,15 +27,20 @@ class NCF(nn.Module):
     """
     Neural Collaborative Filtering
     """
-    def __init__(self, num_users:int, num_items:int, embedding_k:int):
+    def __init__(self, num_users:int, num_items:int, embedding_k:int, depth:int=0):
         super(NCF, self).__init__()
         self.num_users = num_users
         self.num_items = num_items
         self.embedding_k = embedding_k
+        self.depth = depth
         self.user_embedding = nn.Embedding(self.num_users, self.embedding_k)
         self.item_embedding = nn.Embedding(self.num_items, self.embedding_k)
-        self.linear1 = nn.Linear(self.embedding_k*2, self.embedding_k)
-        self.linear2 = nn.Linear(self.embedding_k, 1, bias=False)
+        layers_y1 = [nn.Linear(self.embedding_k*2, self.embedding_k), nn.ReLU()]
+        for _ in range(self.depth):
+            layers_y1.append(nn.Linear(self.embedding_k, self.embedding_k))
+            layers_y1.append(nn.ReLU())
+        layers_y1.append(nn.Linear(self.embedding_k, 1, bias=False))
+        self.y1 = nn.Sequential(*layers_y1)
 
     def forward(self, x):
         user_idx = x[:,0]
@@ -43,8 +48,7 @@ class NCF(nn.Module):
         user_embed = self.user_embedding(user_idx)
         item_embed = self.item_embedding(item_idx)
         z_embed = torch.cat([user_embed, item_embed], axis=1)
-        h1 = nn.ReLU()(self.linear1(z_embed))
-        out = self.linear2(h1)
+        out = self.y1(z_embed)
         return out, user_embed, item_embed
 
 
@@ -75,11 +79,12 @@ class SharedNCF(nn.Module):
     """
     Neural Collaborative Filtering with Embedding Sharing
     """
-    def __init__(self, num_users:int, num_items:int, embedding_k:int):
+    def __init__(self, num_users:int, num_items:int, embedding_k:int, depth:int=0):
         super(SharedNCF, self).__init__()
         self.num_users = num_users
         self.num_items = num_items
         self.embedding_k = embedding_k
+        self.depth = depth
         self.user_embedding = nn.Embedding(self.num_users, self.embedding_k)
         self.item_embedding = nn.Embedding(self.num_items, self.embedding_k)
         self.ctr = nn.Sequential(
@@ -87,11 +92,12 @@ class SharedNCF(nn.Module):
             nn.ReLU(),
             nn.Linear(self.embedding_k, 1, bias=False),
         )
-        self.cvr = nn.Sequential(
-            nn.Linear(self.embedding_k*2, self.embedding_k),
-            nn.ReLU(),
-            nn.Linear(self.embedding_k, 1, bias=False),
-        )
+        layers_y1 = [nn.Linear(self.embedding_k*2, self.embedding_k), nn.ReLU()]
+        for _ in range(self.depth):
+            layers_y1.append(nn.Linear(self.embedding_k, self.embedding_k))
+            layers_y1.append(nn.ReLU())
+        layers_y1.append(nn.Linear(self.embedding_k, 1, bias=False))
+        self.y1 = nn.Sequential(*layers_y1)
 
     def forward(self, x):
         user_idx = x[:,0]
@@ -100,7 +106,7 @@ class SharedNCF(nn.Module):
         item_embed = self.item_embedding(item_idx)
         z_embed = torch.cat([user_embed, item_embed], axis=1)
         ctr = self.ctr(z_embed)
-        cvr = self.cvr(z_embed)
+        cvr = self.y1(z_embed)
         ctcvr = torch.mul(nn.Sigmoid()(ctr), nn.Sigmoid()(cvr))
         return cvr, ctr, ctcvr
 
@@ -138,13 +144,14 @@ class IpsV2(nn.Module):
     """
     IPS-V2 with Neural Collaborative Filtering
     """
-    def __init__(self, num_users:int, num_items:int, embedding_k:int=4, *args, **kwargs):
+    def __init__(self, num_users:int, num_items:int, embedding_k:int=4, depth:int=0, *args, **kwargs):
         super().__init__()
         self.num_users = num_users
         self.num_items = num_items
         self.embedding_k = embedding_k
+        self.depth = depth
         self.prediction_model = NCF(
-            num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, *args, **kwargs)       
+            num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, depth=self.depth *args, **kwargs)       
         self.propensity_model = LinearCF(
             num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, *args, **kwargs)
 
@@ -168,15 +175,16 @@ class NCF_AKBIPS_Exp(nn.Module):
     """
     AKB-IPS with Neural Collaborative Filtering
     """
-    def __init__(self, num_users:int, num_items:int, embedding_k:int=4, dataset_name:str="coat", *args, **kwargs):
+    def __init__(self, num_users:int, num_items:int, embedding_k:int=4, dataset_name:str="coat", depth:int=0, *args, **kwargs):
         super().__init__()
         self.num_users = num_users
         self.num_items = num_items
         self.embedding_k = embedding_k
+        self.depth = depth
         self.W = nn.Embedding(self.num_users, self.embedding_k)
         self.H = nn.Embedding(self.num_items, self.embedding_k)
         self.prediction_model = NCF(
-            num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, *args, **kwargs)
+            num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, depth=self.depth, *args, **kwargs)
         self.weight_model = MF(
             num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, *args, **kwargs)
         if dataset_name == "coat":
