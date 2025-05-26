@@ -13,6 +13,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from module.model import NCF,  NCF_AKBIPS_ExpPlus, LinearCF_AKBIPS_ExpPlus
 from module.dataset import load_data, generate_total_sample
 from module.utils import set_device, set_seed
+from module.metric import ndcg_func, recall_func, ap_func
 try:
     import wandb
 except: 
@@ -278,10 +279,36 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
             nll_y1 = nll_y1.detach().cpu().item()
             pred_y1 = pred_y1.detach().cpu().numpy()
             auc_y1 = roc_auc_score(y1_test, pred_y1)
+            ndcg_y1_res = ndcg_func(pred_y1.squeeze(), x1_test, y1_test, top_k_list)
+            ndcg_y1_dict: dict = {}
+            for top_k in top_k_list:
+                ndcg_y1_dict[f"ndcg_y1_{top_k}"] = np.mean(ndcg_y1_res[f"ndcg_y1_{top_k}"])
+            recall_y1_res = recall_func(pred_y1.squeeze(), x1_test, y1_test, top_k_list)
+            recall_y1_dict: dict = {}
+            for top_k in top_k_list:
+                recall_y1_dict[f"recall_y1_{top_k}"] = np.mean(recall_y1_res[f"recall_y1_{top_k}"])
+            ap_y1_res = ap_func(pred_y1.squeeze(), x1_test, y1_test, top_k_list)
+            ap_y1_dict: dict = {}
+            for top_k in top_k_list:
+                ap_y1_dict[f"ap_y1_{top_k}"] = np.mean(ap_y1_res[f"ap_y1_{top_k}"])
+
+
             nll_y0 = nn.BCELoss()(nn.Sigmoid()(pred_y0), torch.Tensor(y0_test).unsqueeze(-1).to(device))
             nll_y0 = nll_y0.detach().cpu().item()
             pred_y0 = pred_y0.detach().cpu().numpy()
             auc_y0 = roc_auc_score(y0_test, pred_y0)
+            ndcg_y0_res = ndcg_func(pred_y0.squeeze(), x0_test, y0_test, top_k_list)
+            ndcg_y0_dict: dict = {}
+            for top_k in top_k_list:
+                ndcg_y0_dict[f"ndcg_y0_{top_k}"] = np.mean(ndcg_y0_res[f"ndcg_y0_{top_k}"])
+            recall_y0_res = recall_func(pred_y0.squeeze(), x0_test, y0_test, top_k_list)
+            recall_y0_dict: dict = {}
+            for top_k in top_k_list:
+                recall_y0_dict[f"recall_y0_{top_k}"] = np.mean(recall_y0_res[f"recall_y0_{top_k}"])
+            ap_y0_res = ap_func(pred_y0.squeeze(), x0_test, y0_test, top_k_list)
+            ap_y0_dict: dict = {}
+            for top_k in top_k_list:
+                ap_y0_dict[f"ap_y0_{top_k}"] = np.mean(ap_y0_res[f"ap_y0_{top_k}"])
 
 
             print(f"AUC_y1: {auc_y1}")
@@ -295,6 +322,12 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
                 wandb_var.log({"auc_y0": auc_y0})
                 wandb_var.log({"nll_y1": nll_y1})
                 wandb_var.log({"nll_y0": nll_y0})
+                wandb_var.log(ndcg_y1_dict)
+                wandb_var.log(recall_y1_dict)
+                wandb_var.log(ap_y1_dict)
+                wandb_var.log(ndcg_y0_dict)
+                wandb_var.log(recall_y0_dict)
+                wandb_var.log(ap_y0_dict)
 
 
     if wandb_login:
