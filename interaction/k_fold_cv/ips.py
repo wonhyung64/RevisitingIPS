@@ -33,6 +33,7 @@ parser.add_argument("--top-k-list", type=list, default=[1,3,5,7,10])
 parser.add_argument("--data-dir", type=str, default="../data")
 parser.add_argument("--dataset-name", type=str, default="yahoo_r3")
 parser.add_argument("--base-model", type=str, default="ncf")
+parser.add_argument("--depth", type=int, default=0)
 try:
     args = parser.parse_args()
 except:
@@ -53,6 +54,7 @@ base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device()
+depth = args.depth
 
 
 x_train, _ = load_data(data_dir, dataset_name)
@@ -92,7 +94,7 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
     total_batch = num_samples // batch_size
 
 
-    ps_model = NCF(num_users, num_items, embedding_k)
+    ps_model = NCF(num_users, num_items, embedding_k, depth=depth)
     ps_model = ps_model.to(device)
     optimizer = torch.optim.Adam(ps_model.parameters(), lr=1e-2, weight_decay=1e-4)
     loss_fcn = torch.nn.BCELoss()
