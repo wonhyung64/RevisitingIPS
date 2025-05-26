@@ -1,5 +1,6 @@
 import os
 import sys
+import subprocess
 import torch
 import argparse
 import numpy as np
@@ -10,6 +11,13 @@ from module.model import NCF, MF
 from module.metric import ndcg_func, recall_func, ap_func
 from module.dataset import binarize, load_data, generate_total_sample
 from module.utils import set_device, set_seed
+try:
+    import wandb
+except: 
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "wandb"])
+    import wandb
+
 
 
 parser = argparse.ArgumentParser()
@@ -45,6 +53,17 @@ expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device()
 
+
+wandb_login = False
+try:
+    wandb_login = wandb.login(key = open(f"{data_dir}/wandb_key.txt", 'r').readline())
+except:
+    pass
+if wandb_login:
+    configs = vars(args)
+    configs["device"] = device
+    wandb_var = wandb.init(project="no_ips_journal", config=configs)
+    wandb.run.name = f"single_naive_interaction_{expt_num}"
 
 x_train, x_test = load_data(data_dir, dataset_name)
 x_train, y_train = x_train[:,:-1], x_train[:,-1]
@@ -128,3 +147,14 @@ for epoch in range(1, num_epochs+1):
         print(f"Recall: {recall_dict}")
         print(f"AP: {ap_dict}")
         print(f"AUC: {auc}")
+
+
+        if wandb_login:
+            wandb_var.log(ndcg_dict)
+            wandb_var.log(recall_dict)
+            wandb_var.log(ap_dict)
+            wandb_var.log({"auc": auc})
+
+
+if wandb_login:
+    wandb.finish()

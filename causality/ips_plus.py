@@ -10,6 +10,12 @@ from module.model import NCFPlus, NCF, LinearCFPlus
 from module.metric import cdcg_func, car_func, cp_func
 from module.dataset import load_data, generate_total_sample
 from module.utils import set_device, set_seed
+try:
+    import wandb
+except: 
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "wandb"])
+    import wandb
 
 
 parser = argparse.ArgumentParser()
@@ -56,6 +62,18 @@ else:
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device(device)
+
+
+wandb_login = False
+try:
+    wandb_login = wandb.login(key = open(f"{data_dir}/wandb_key.txt", 'r').readline())
+except:
+    pass
+if wandb_login:
+    configs = vars(args)
+    configs["device"] = device
+    wandb_var = wandb.init(project="no_ips_journal", config=configs)
+    wandb.run.name = f"single_ips_causality_{expt_num}"
 
 
 x_train, x_test = load_data(data_dir, dataset_name)
@@ -208,3 +226,14 @@ for epoch in range(1, num_epochs+1):
         print(f"cDCG: {cdcg_dict}")
         print(f"cP: {cp_dict}")
         print(f"cAR: {car_dict}")
+
+
+        if wandb_login:
+            wandb_var.log(cdcg_dict)
+            wandb_var.log(car_dict)
+            wandb_var.log(cp_dict)
+            wandb_var.log({"mse": mse})
+
+
+if wandb_login:
+    wandb.finish()

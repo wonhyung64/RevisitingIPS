@@ -13,6 +13,12 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from module.model import NCF,  NCF_AKBIPS_ExpPlus, LinearCF_AKBIPS_ExpPlus
 from module.dataset import load_data, generate_total_sample
 from module.utils import set_device, set_seed
+try:
+    import wandb
+except: 
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "wandb"])
+    import wandb
 
 
 parser = argparse.ArgumentParser()
@@ -86,6 +92,21 @@ print(f"# user: {num_users}, # item: {num_items}")
 
 kf = KFold(n_splits=4, shuffle=True, random_state=random_seed)
 for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
+
+
+    wandb_login = False
+    try:
+        wandb_login = wandb.login(key = open(f"{data_dir}/wandb_key.txt", 'r').readline())
+    except:
+        pass
+    if wandb_login:
+        configs = vars(args)
+        configs["device"] = device
+        configs["cv_num"] = cv_num
+        wandb_var = wandb.init(project="no_ips_journal", config=configs)
+        wandb.run.name = f"cv_akb_ips_causality_{expt_num}"
+
+
     x_train = x_train_cv[train_idx]
     y_train = y_train_cv[train_idx]
     t_train = t_train_cv[train_idx]
@@ -267,3 +288,14 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
             print(f"AUC_y0: {auc_y0}")
             print(f"NLL_y1: {nll_y1}")
             print(f"NLL_y0: {nll_y0}")
+
+
+            if wandb_login:
+                wandb_var.log({"auc_y1": auc_y1})
+                wandb_var.log({"auc_y0": auc_y0})
+                wandb_var.log({"nll_y1": nll_y1})
+                wandb_var.log({"nll_y0": nll_y0})
+
+
+    if wandb_login:
+        wandb.finish()
