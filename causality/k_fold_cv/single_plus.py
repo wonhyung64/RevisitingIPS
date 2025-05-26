@@ -90,7 +90,8 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
         configs["device"] = device
         configs["cv_num"] = cv_num
         wandb_var = wandb.init(project="no_ips_journal", config=configs)
-        wandb.run.name = f"cv_single_{loss_type}_causality_{expt_num}"
+        expt_name = f"cv_single_{loss_type}_causality_{expt_num}"
+        wandb.run.name = expt_name
 
 
     x_train = x_train_cv[train_idx]
@@ -289,3 +290,8 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
 
     if wandb_login:
         wandb.finish()
+
+
+    os.makedirs(f"{data_dir}/cv_weights", exist_ok=True) 
+    torch.save(model.state_dict(), f"{data_dir}/cv_weights/{expt_name}-main_cv{cv_num}.pth")
+    torch.save(ps_model.state_dict(), f"{data_dir}/cv_weights/{expt_name}-aux_cv{cv_num}.pth")

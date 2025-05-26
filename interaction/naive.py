@@ -63,7 +63,8 @@ if wandb_login:
     configs = vars(args)
     configs["device"] = device
     wandb_var = wandb.init(project="no_ips_journal", config=configs)
-    wandb.run.name = f"single_naive_interaction_{expt_num}"
+    expt_name = f"single_naive_interaction_{expt_num}"
+    wandb.run.name = expt_name
 
 x_train, x_test = load_data(data_dir, dataset_name)
 x_train, y_train = x_train[:,:-1], x_train[:,-1]
@@ -158,3 +159,7 @@ for epoch in range(1, num_epochs+1):
 
 if wandb_login:
     wandb.finish()
+
+
+os.makedirs(f"{data_dir}/report_weights", exist_ok=True) 
+torch.save(model.state_dict(), f"{data_dir}/report_weights/{expt_name}-main.pth")
