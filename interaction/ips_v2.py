@@ -25,9 +25,9 @@ parser.add_argument("--random-seed", type=int, default=0)
 parser.add_argument("--evaluate-interval", type=int, default=50)
 parser.add_argument("--top-k-list", type=list, default=[1,3,5,7,10])
 parser.add_argument("--data-dir", type=str, default="./data")
-parser.add_argument("--alpha", type=float, default=1.)
-parser.add_argument("--beta", type=float, default=1.)
-parser.add_argument("--eta", type=float, default=1.)
+parser.add_argument("--lambda1", type=float, default=1.)
+parser.add_argument("--lambda2", type=float, default=1.)
+parser.add_argument("--lambda3", type=float, default=1.)
 parser.add_argument("--gamma", type=float, default=0.1)
 parser.add_argument("--G", type=int, default=1)
 parser.add_argument("--base-model", type=str, default="ncf")
@@ -47,9 +47,9 @@ evaluate_interval = args.evaluate_interval
 top_k_list = args.top_k_list
 data_dir = args.data_dir
 dataset_name = args.dataset_name
-alpha = args.alpha
-beta = args.beta
-eta = args.eta
+lambda1 = args.lambda1
+lambda2 = args.lambda2
+lambda3 = args.lambda3
 gamma = args.gamma
 G = args.G
 base_model = args.base_model

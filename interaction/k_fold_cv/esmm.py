@@ -27,7 +27,7 @@ parser.add_argument("--top-k-list", type=list, default=[1,3,5,7,10])
 parser.add_argument("--data-dir", type=str, default="../data")
 parser.add_argument("--dataset-name", type=str, default="coat")
 parser.add_argument("--G", type=int, default=1)
-parser.add_argument("--alpha", type=float, default=1.)
+parser.add_argument("--lambda1", type=float, default=1.)
 parser.add_argument("--base-model", type=str, default="ncf")
 try:
     args = parser.parse_args()
@@ -46,7 +46,7 @@ top_k_list = args.top_k_list
 data_dir = args.data_dir
 dataset_name = args.dataset_name
 G = args.G
-alpha = args.alpha
+lambda1 = args.lambda1
 base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
@@ -101,7 +101,7 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
 
 
             pred_cvr, pred_ctr, pred_ctcvr = model(x_sampled)
-            ctr_loss = loss_fcn(nn.Sigmoid()(pred_ctr), sub_obs) * alpha
+            ctr_loss = loss_fcn(nn.Sigmoid()(pred_ctr), sub_obs) * lambda1
             ctcvr_loss = loss_fcn(pred_ctcvr, sub_entire_y)
             total_loss = ctr_loss + ctcvr_loss
             epoch_ctr_loss += ctr_loss

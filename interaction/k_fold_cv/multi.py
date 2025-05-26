@@ -17,7 +17,7 @@ from module.utils import set_device, set_seed
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--alpha", type=float, default=1.)
+parser.add_argument("--lambda1", type=float, default=1.)
 parser.add_argument("--lr", type=float, default=1e-3)
 parser.add_argument("--weight-decay", type=float, default=1e-5)
 parser.add_argument("--batch-size", type=int, default=4096)
@@ -47,7 +47,7 @@ top_k_list = args.top_k_list
 data_dir = args.data_dir
 dataset_name = args.dataset_name
 loss_type = args.loss_type
-alpha = args.alpha
+lambda1 = args.lambda1
 base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
@@ -107,7 +107,7 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
             pred, ctr, ctcvr = model(sub_x)
             if loss_type == "ips":
                 inv_prop = 1/torch.nn.Sigmoid()(ctr).detach()
-            ctr_loss = F.binary_cross_entropy(nn.Sigmoid()(ctr), sub_t) * alpha
+            ctr_loss = F.binary_cross_entropy(nn.Sigmoid()(ctr), sub_t) * lambda1
             rec_loss = F.binary_cross_entropy(
                 torch.nn.Sigmoid()(pred), sub_y, weight=inv_prop, reduction='none') 
             rec_loss = (rec_loss * sub_t).mean()

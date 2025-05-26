@@ -5,7 +5,7 @@ ENV=python
 RANDOM_SEED=0
 
 experiments=(
-"--dataset-name=original --lr=1e-3 --weight-decay=1e-4 --alpha=1. --omega=0.25"
+"--dataset-name=original --lr=1e-3 --weight-decay=1e-4 --lambda1=1. --alpha=0.25"
 )
 EXECUTION_FILE=$TASK/multi_plus_naive.py
 for index in ${!experiments[*]}; do
@@ -13,7 +13,7 @@ for index in ${!experiments[*]}; do
 done
 
 experiments=(
-"--dataset-name=original --lr=1e-4 --weight-decay=1e-4 --alpha=1. --omega=0.25"
+"--dataset-name=original --lr=1e-4 --weight-decay=1e-4 --lambda1=1. --alpha=0.25"
 )
 EXECUTION_FILE=$TASK/esmm_plus.py
 for index in ${!experiments[*]}; do

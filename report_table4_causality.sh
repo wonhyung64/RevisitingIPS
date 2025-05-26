@@ -16,8 +16,8 @@ done
 
 
 experiments=(
-"--base-model=linearcf --dataset-name=original --lr1=1e-4 --lamb1=1e-6 --G=1 --lr2=0.05 --lr3=0.05 --lamb2=0. --lamb3=0. --gamma=1. --J=3 --C=1e-5"
-"--base-model=linearcf --dataset-name=personalized --lr1=1e-4 --lamb1=1e-6 --G=1 --lr2=0.05 --lr3=0.05 --lamb2=0. --lamb3=0. --gamma=1. --J=3 --C=1e-5"
+"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-6 --G=1 --lr2=0.05 --lr3=0.05 --lamb2=0. --lamb3=0. --gamma=1. --J=3 --C=1e-5"
+"--base-model=linearcf --dataset-name=personalized --lr=1e-4 --weight-decay=1e-6 --G=1 --lr2=0.05 --lr3=0.05 --lamb2=0. --lamb3=0. --gamma=1. --J=3 --C=1e-5"
 )
 EXECUTION_FILE=$TASK/akb_ips_plus.py
 for index in ${!experiments[*]}; do
@@ -36,8 +36,8 @@ done
 
 
 experiments=(
-"--base-model=linearcf --dataset-name=original --lr=1e-3 --weight-decay=1e-5 --alpha=0.1"
-"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5 --alpha=1."
+"--base-model=linearcf --dataset-name=original --lr=1e-3 --weight-decay=1e-5 --lambda1=0.1"
+"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5 --lambda1=1."
 )
 EXECUTION_FILE=$TASK/esmm_plus.py
 for index in ${!experiments[*]}; do
@@ -46,8 +46,8 @@ done
 
 
 experiments=(
-"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-4 --alpha=0.001 --propensity=pred"
-"--base-model=linearcf --dataset-name=personalized --lr=1e-4 --weight-decay=1e-4 --alpha=0.001 --propensity=pred"
+"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-4 --lambda1=0.001 --propensity=pred"
+"--base-model=linearcf --dataset-name=personalized --lr=1e-4 --weight-decay=1e-4 --lambda1=0.001 --propensity=pred"
 )
 EXECUTION_FILE=$TASK/multi_plus_ips.py
 for index in ${!experiments[*]}; do
@@ -56,8 +56,8 @@ done
 
 
 experiments=(
-"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-5 --alpha=2."
-"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-6 --alpha=2."
+"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-5 --lambda1=2."
+"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-6 --lambda1=2."
 )
 EXECUTION_FILE=$TASK/multi_plus_naive.py
 for index in ${!experiments[*]}; do
@@ -66,8 +66,8 @@ done
 
 
 experiments=(
-"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-4 --alpha=1. --beta=2. --propensity=pred"
-"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5 --alpha=0.1 --beta=1. --propensity=pred"
+"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-4 --lambda1=1. --lambda2=2. --propensity=pred"
+"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5 --lambda1=0.1 --lambda2=1. --propensity=pred"
 )
 EXECUTION_FILE=$TASK/escm2_plus_ips.py
 for index in ${!experiments[*]}; do
@@ -76,8 +76,8 @@ done
 
 
 experiments=(
-"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-6 --alpha=2. --beta=1."
-"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5 --alpha=1. --beta=1."
+"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-6 --lambda1=2. --lambda2=1."
+"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5 --lambda1=1. --lambda2=1."
 )
 EXECUTION_FILE=$TASK/escm2_plus_naive.py
 for index in ${!experiments[*]}; do
@@ -86,8 +86,8 @@ done
 
 
 experiments=(
-"--base-model=linearcf --dataset-name=original --lr=1e-3 --weight-decay=1e-4 --alpha=0.001 --beta=1. --zeta=0.001 --propensity=pred"
-"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-4 --alpha=0.001 --beta=0.1 --zeta=2. --propensity=pred"
+"--base-model=linearcf --dataset-name=original --lr=1e-3 --weight-decay=1e-4 --lambda1=0.001 --lambda2=1. --lambda3=0.001 --propensity=pred"
+"--base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-4 --lambda1=0.001 --lambda2=0.1 --lambda3=2. --propensity=pred"
 )
 EXECUTION_FILE=$TASK/v2_plus_ips.py
 for index in ${!experiments[*]}; do
@@ -96,8 +96,8 @@ done
 
 
 experiments=(
-"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-5 --alpha=2. --beta=1. --zeta=0.01"
-"--base-model=linearcf --dataset-name=personalized --lr=1e-4 --weight-decay=1e-5 --alpha=2. --beta=2. --zeta=2."
+"--base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-5 --lambda1=2. --lambda2=1. --lambda3=0.01"
+"--base-model=linearcf --dataset-name=personalized --lr=1e-4 --weight-decay=1e-5 --lambda1=2. --lambda2=2. --lambda3=2."
 )
 EXECUTION_FILE=$TASK/v2_plus_naive.py
 for index in ${!experiments[*]}; do

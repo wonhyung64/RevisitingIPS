@@ -18,8 +18,8 @@ from module.utils import set_device, set_seed
 
 #%%
 parser = argparse.ArgumentParser()
-parser.add_argument("--lr1", type=float, default=0.01)
-parser.add_argument("--lamb1", type=float, default=1e-4)
+parser.add_argument("--lr", type=float, default=0.01)
+parser.add_argument("--weight-decay", type=float, default=1e-4)
 parser.add_argument("--batch-size", type=int, default=4096)
 parser.add_argument("--dataset-name", type=str, default="original")
 parser.add_argument("--G", type=int, default=1)
@@ -39,7 +39,7 @@ parser.add_argument("--data-dir", type=str, default="./data")
 parser.add_argument("--random-seed", type=int, default=0)
 parser.add_argument("--base-model", type=str, default="ncf")
 parser.add_argument("--device", type=str, default="none")
-parser.add_argument("--omega", type=float, default=9999.)
+parser.add_argument("--alpha", type=float, default=9999.)
 try:
     args = parser.parse_args()
 except:
@@ -47,10 +47,10 @@ except:
 
 
 embedding_k = args.embedding_k
-lr1 = args.lr1
+lr = args.lr
 lr2 = args.lr2
 lr3 = args.lr3
-lamb1 = args.lamb1
+weight_decay = args.weight_decay
 lamb2 = args.lamb2
 lamb3 = args.lamb3
 batch_size = args.batch_size
@@ -67,13 +67,13 @@ num_w_epo = args.num_w_epo
 J = args.J
 base_model = args.base_model
 device = args.device
-omega = args.omega
-if omega < 9999.:
-    omega1 = 1/omega
-    omega0 = 1/(1-omega)
+alpha = args.alpha
+if alpha < 9999.:
+    alpha1 = 1/alpha
+    alpha0 = 1/(1-alpha)
 else:
-    omega1 = 1.
-    omega0 = 1.
+    alpha1 = 1.
+    alpha0 = 1.
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device(device)
@@ -141,7 +141,7 @@ elif base_model == "linearcf":
     model = LinearCF_AKBIPS_ExpPlus(num_users, num_items, embedding_k)
 model = model.to(device)
 optimizer_prediction = torch.optim.Adam(
-    model.prediction_model.parameters(), lr=lr1, weight_decay=lamb1)
+    model.prediction_model.parameters(), lr=lr, weight_decay=weight_decay)
 optimizer_weight = torch.optim.Adam(
     model.weight_model.parameters(), lr=lr2, weight_decay=lamb2)
 optimizer_epo = torch.optim.Adam(
@@ -216,9 +216,9 @@ for epoch in range(1, num_epochs+1):
         inv_prop = 1/(1-nn.Sigmoid()(prop).detach())
         w0 = (1-nn.Sigmoid()(w_).detach()) * inv_prop
         pred_y1_loss = F.binary_cross_entropy(nn.Sigmoid()(pred_y1), sub_y1, weight=w1, reduction='none')
-        pred_y1_loss = (pred_y1_loss * sub_t).mean() * omega1
+        pred_y1_loss = (pred_y1_loss * sub_t).mean() * alpha1
         pred_y0_loss = F.binary_cross_entropy(nn.Sigmoid()(pred_y0), sub_y0, weight=w0, reduction='none')
-        pred_y0_loss = (pred_y0_loss * (1-sub_t)).mean() * omega0
+        pred_y0_loss = (pred_y0_loss * (1-sub_t)).mean() * alpha0
         pred_loss = pred_y1_loss + pred_y0_loss
         optimizer_prediction.zero_grad()
         pred_loss.backward()

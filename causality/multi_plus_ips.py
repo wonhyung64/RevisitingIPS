@@ -16,7 +16,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--dataset-name", type=str, default="personalized")
 parser.add_argument("--lr", type=float, default=1e-4)
 parser.add_argument("--weight-decay", type=float, default=1e-4)
-parser.add_argument("--alpha", type=float, default=1.)
+parser.add_argument("--lambda1", type=float, default=1.)
 parser.add_argument("--batch-size", type=int, default=4096)
 parser.add_argument("--embedding-k", type=int, default=64)
 parser.add_argument("--num-epochs", type=int, default=1000)
@@ -27,7 +27,7 @@ parser.add_argument("--data-dir", type=str, default="./data")
 parser.add_argument("--propensity", type=str, default="pred")
 parser.add_argument("--base-model", type=str, default="ncf")
 parser.add_argument("--device", type=str, default="none")
-parser.add_argument("--omega", type=float, default=9999.)
+parser.add_argument("--alpha", type=float, default=9999.)
 try:
     args = parser.parse_args()
 except:
@@ -45,16 +45,16 @@ top_k_list = args.top_k_list
 data_dir = args.data_dir
 dataset_name = args.dataset_name
 propensity = args.propensity
-alpha = args.alpha
+lambda1 = args.lambda1
 base_model = args.base_model
 device = args.device
-omega = args.omega
-if omega < 9999.:
-    omega1 = 1/omega
-    omega0 = 1/(1-omega)
+alpha = args.alpha
+if alpha < 9999.:
+    alpha1 = 1/alpha
+    alpha0 = 1/(1-alpha)
 else:
-    omega1 = 1.
-    omega0 = 1.
+    alpha1 = 1.
+    alpha0 = 1.
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device(device)
@@ -121,8 +121,8 @@ for epoch in range(1, num_epochs+1):
             inv_prop = 1 / nn.Sigmoid()(ctr).detach()
         rec_loss = nn.functional.binary_cross_entropy(
             nn.Sigmoid()(pred_y1), sub_y, weight=inv_prop, reduction="none")
-        y1_loss = torch.mean(rec_loss * sub_t) * omega1
-        ctr_loss = nn.functional.binary_cross_entropy(nn.Sigmoid()(ctr), sub_t) * alpha
+        y1_loss = torch.mean(rec_loss * sub_t) * alpha1
+        ctr_loss = nn.functional.binary_cross_entropy(nn.Sigmoid()(ctr), sub_t) * lambda1
 
 
         sub_y = y0_entire[selected_idx]
@@ -137,7 +137,7 @@ for epoch in range(1, num_epochs+1):
             inv_prop = 1 / (1-nn.Sigmoid()(ctr).detach())
         rec_loss = nn.functional.binary_cross_entropy(
             nn.Sigmoid()(pred_y0), sub_y, weight=inv_prop, reduction="none")
-        y0_loss = torch.mean(rec_loss * sub_t) * omega0
+        y0_loss = torch.mean(rec_loss * sub_t) * alpha0
 
 
         total_loss = y1_loss + y0_loss + ctr_loss

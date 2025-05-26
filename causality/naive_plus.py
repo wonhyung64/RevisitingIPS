@@ -25,7 +25,7 @@ parser.add_argument("--top-k-list", type=list, default=[10, 30, 100, 1372])
 parser.add_argument("--data-dir", type=str, default="./data")
 parser.add_argument("--base-model", type=str, default="ncf")
 parser.add_argument("--device", type=str, default="none")
-parser.add_argument("--omega", type=float, default=9999.)
+parser.add_argument("--alpha", type=float, default=9999.)
 try:
     args = parser.parse_args()
 except:
@@ -44,13 +44,13 @@ data_dir = args.data_dir
 dataset_name = args.dataset_name
 base_model = args.base_model
 device = args.device
-omega = args.omega
-if omega < 9999.:
-    omega1 = 1/omega
-    omega0 = 1/(1-omega)
+alpha = args.alpha
+if alpha < 9999.:
+    alpha1 = 1/alpha
+    alpha0 = 1/(1-alpha)
 else:
-    omega1 = 1.
-    omega0 = 1.
+    alpha1 = 1.
+    alpha0 = 1.
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device(device)
@@ -112,7 +112,7 @@ for epoch in range(1, num_epochs+1):
         sub_ps = torch.Tensor(sub_ps).unsqueeze(-1).to(device)
         rec_loss = nn.functional.binary_cross_entropy(
             nn.Sigmoid()(pred_y1), sub_y, reduction="none")
-        y1_loss = torch.mean(rec_loss * sub_t) * omega1
+        y1_loss = torch.mean(rec_loss * sub_t) * alpha1
 
 
         sub_y = y0_entire[selected_idx]
@@ -123,7 +123,7 @@ for epoch in range(1, num_epochs+1):
         sub_ps = torch.Tensor(sub_ps).unsqueeze(-1).to(device)
         rec_loss = nn.functional.binary_cross_entropy(
             nn.Sigmoid()(pred_y0), sub_y, reduction="none")
-        y0_loss = torch.mean(rec_loss * sub_t) * omega0
+        y0_loss = torch.mean(rec_loss * sub_t) * alpha0
 
 
         total_loss = y1_loss + y0_loss

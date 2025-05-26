@@ -16,8 +16,8 @@ done
 
 
 experiments=(
-"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr1=1e-3 --lamb1=1e-5 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
-"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr1=1e-4 --lamb1=1e-4 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
+"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-5 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
+"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
 )
 EXECUTION_FILE=$TASK/akb_ips.py
 for index in ${!experiments[*]}; do
@@ -36,8 +36,8 @@ done
 
 
 experiments=(
-"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-4 --weight-decay=1e-4 --alpha=0.1"
-"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-2 --weight-decay=1e-6 --alpha=2."
+"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-4 --weight-decay=1e-4 --lambda1=0.1"
+"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-2 --weight-decay=1e-6 --lambda1=2."
 )
 EXECUTION_FILE=$TASK/esmm.py
 for index in ${!experiments[*]}; do
@@ -46,8 +46,8 @@ done
 
 
 experiments=(
-"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-5 --alpha=2."
-"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6 --alpha=1."
+"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-5 --lambda1=2."
+"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6 --lambda1=1."
 )
 EXECUTION_FILE=$TASK/multi_ips.py
 for index in ${!experiments[*]}; do
@@ -56,8 +56,8 @@ done
 
 
 experiments=(
-"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --alpha=2."
-"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-5 --alpha=2."
+"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --lambda1=2."
+"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-5 --lambda1=2."
 )
 EXECUTION_FILE=$TASK/multi_naive.py
 for index in ${!experiments[*]}; do
@@ -66,8 +66,8 @@ done
 
 
 experiments=(
-"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --alpha=2. --beta=1."
-"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4 --alpha=2. --beta=1."
+"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --lambda1=2. --lambda2=1."
+"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4 --lambda1=2. --lambda2=1."
 )
 EXECUTION_FILE=$TASK/escm2_ips.py
 for index in ${!experiments[*]}; do
@@ -76,8 +76,8 @@ done
 
 
 experiments=(
-"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --alpha=2. --beta=1."
-"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4 --alpha=2. --beta=1."
+"--base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --lambda1=2. --lambda2=1."
+"--base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4 --lambda1=2. --lambda2=1."
 )
 EXECUTION_FILE=$TASK/escm2_naive.py
 for index in ${!experiments[*]}; do

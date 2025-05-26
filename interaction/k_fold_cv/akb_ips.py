@@ -17,8 +17,8 @@ from module.dataset import binarize, generate_total_sample, load_data
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--lr1", type=float, default=0.01)
-parser.add_argument("--lamb1", type=float, default=1e-4)
+parser.add_argument("--lr", type=float, default=0.01)
+parser.add_argument("--weight-decay", type=float, default=1e-4)
 parser.add_argument("--batch-size", type=int, default=4096)
 parser.add_argument("--dataset-name", type=str, default="coat")
 parser.add_argument("--G", type=int, default=1)
@@ -44,10 +44,10 @@ except:
 
 
 embedding_k = args.embedding_k
-lr1 = args.lr1
+lr = args.lr
 lr2 = args.lr2
 lr3 = args.lr3
-lamb1 = args.lamb1
+weight_decay = args.weight_decay
 lamb2 = args.lamb2
 lamb3 = args.lamb3
 batch_size = args.batch_size
@@ -129,7 +129,7 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
         model = MF_AKBIPS_Exp(num_users, num_items, embedding_k, dataset_name)
     model = model.to(device)
     optimizer_prediction = torch.optim.Adam(
-        model.prediction_model.parameters(), lr=lr1, weight_decay=lamb1)
+        model.prediction_model.parameters(), lr=lr, weight_decay=weight_decay)
     optimizer_weight = torch.optim.Adam(
         model.weight_model.parameters(), lr=lr2, weight_decay=lamb2)
     optimizer_epo = torch.optim.Adam(

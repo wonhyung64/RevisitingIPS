@@ -28,8 +28,8 @@ parser.add_argument("--random-seed", type=int, default=0)
 parser.add_argument("--evaluate-interval", type=int, default=50)
 parser.add_argument("--top-k-list", type=list, default=[1,3,5,7,10])
 parser.add_argument("--data-dir", type=str, default="../data")
-parser.add_argument("--alpha", type=float, default=1.)
-parser.add_argument("--beta", type=float, default=0.1)
+parser.add_argument("--lambda1", type=float, default=1.)
+parser.add_argument("--lambda2", type=float, default=0.1)
 parser.add_argument("--G", type=int, default=1)
 parser.add_argument("--base-model", type=str, default="ncf")
 try:
@@ -48,8 +48,8 @@ evaluate_interval = args.evaluate_interval
 top_k_list = args.top_k_list
 data_dir = args.data_dir
 dataset_name = args.dataset_name
-alpha = args.alpha
-beta = args.beta
+lambda1 = args.lambda1
+lambda2 = args.lambda2
 G = args.G
 loss_type = args.loss_type
 base_model = args.base_model
@@ -113,8 +113,8 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
             pred_cvr, pred_ctr, pred_ctcvr = model(sub_x)
             if loss_type == "ips":
                 inv_prop = 1/torch.nn.Sigmoid()(pred_ctr).detach()
-            ctr_loss = loss_fcn(nn.Sigmoid()(pred_ctr), sub_t) * alpha
-            ctcvr_loss = loss_fcn(pred_ctcvr, sub_y) * beta
+            ctr_loss = loss_fcn(nn.Sigmoid()(pred_ctr), sub_t) * lambda1
+            ctcvr_loss = loss_fcn(pred_ctcvr, sub_y) * lambda2
             cvr_loss = F.binary_cross_entropy(nn.Sigmoid()(pred_cvr), sub_y, inv_prop, reduction="none")
             cvr_loss = (cvr_loss * sub_t).mean()
             total_loss = ctr_loss + ctcvr_loss + cvr_loss

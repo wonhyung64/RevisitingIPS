@@ -20,8 +20,8 @@ parser.add_argument("--lr", type=float, default=1e-3)
 parser.add_argument("--weight-decay", type=float, default=1e-4)
 parser.add_argument("--batch-size", type=int, default=4096)
 parser.add_argument("--dataset-name", type=str, default="coat")
-parser.add_argument("--alpha", type=float, default=1.)
-parser.add_argument("--beta", type=float, default=1.)
+parser.add_argument("--lambda1", type=float, default=1.)
+parser.add_argument("--lambda2", type=float, default=1.)
 parser.add_argument("--num-epochs", type=int, default=1000)
 parser.add_argument("--random-seed", type=int, default=0)
 parser.add_argument("--evaluate-interval", type=int, default=50)
@@ -45,8 +45,8 @@ evaluate_interval = args.evaluate_interval
 top_k_list = args.top_k_list
 data_dir = args.data_dir
 dataset_name = args.dataset_name
-alpha = args.alpha
-beta = args.beta
+lambda1 = args.lambda1
+lambda2 = args.lambda2
 G = args.G
 base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
@@ -97,8 +97,8 @@ for epoch in range(1, num_epochs+1):
 
 
         pred_cvr, pred_ctr, pred_ctcvr = model(x_sampled)
-        ctr_loss = loss_fcn(nn.Sigmoid()(pred_ctr), sub_obs) * alpha
-        ctcvr_loss = loss_fcn(pred_ctcvr, sub_entire_y) * beta
+        ctr_loss = loss_fcn(nn.Sigmoid()(pred_ctr), sub_obs) * lambda1
+        ctcvr_loss = loss_fcn(pred_ctcvr, sub_entire_y) * lambda2
         cvr_loss = F.binary_cross_entropy(nn.Sigmoid()(pred_cvr), sub_entire_y, reduction="none")
         cvr_loss = (cvr_loss * sub_obs).mean()
         total_loss = ctr_loss + ctcvr_loss + cvr_loss

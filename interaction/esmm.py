@@ -19,7 +19,7 @@ parser.add_argument("--lr", type=float, default=1e-4)
 parser.add_argument("--weight-decay", type=float, default=1e-4)
 parser.add_argument("--batch-size", type=int, default=4096)
 parser.add_argument("--dataset-name", type=str, default="coat")
-parser.add_argument("--alpha", type=float, default=0.1)
+parser.add_argument("--lambda1", type=float, default=0.1)
 parser.add_argument("--num-epochs", type=int, default=1000)
 parser.add_argument("--random-seed", type=int, default=0)
 parser.add_argument("--evaluate-interval", type=int, default=50)
@@ -44,7 +44,7 @@ top_k_list = args.top_k_list
 data_dir = args.data_dir
 dataset_name = args.dataset_name
 G = args.G
-alpha = args.alpha
+lambda1 = args.lambda1
 base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
@@ -93,7 +93,7 @@ for epoch in range(1, num_epochs+1):
 
 
         pred_cvr, pred_ctr, pred_ctcvr = model(x_sampled)
-        ctr_loss = loss_fcn(nn.Sigmoid()(pred_ctr), sub_obs) * alpha
+        ctr_loss = loss_fcn(nn.Sigmoid()(pred_ctr), sub_obs) * lambda1
         ctcvr_loss = loss_fcn(pred_ctcvr, sub_entire_y)
         total_loss = ctr_loss + ctcvr_loss
         epoch_ctr_loss += ctr_loss

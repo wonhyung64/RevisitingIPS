@@ -27,9 +27,9 @@ parser.add_argument("--random-seed", type=int, default=0)
 parser.add_argument("--evaluate-interval", type=int, default=50)
 parser.add_argument("--top-k-list", type=list, default=[1,3,5,7,10])
 parser.add_argument("--data-dir", type=str, default="../data")
-parser.add_argument("--alpha", type=float, default=1.)
-parser.add_argument("--beta", type=float, default=1.)
-parser.add_argument("--eta", type=float, default=1.)
+parser.add_argument("--lambda1", type=float, default=1.)
+parser.add_argument("--lambda2", type=float, default=1.)
+parser.add_argument("--lambda3", type=float, default=1.)
 parser.add_argument("--gamma", type=float, default=0.1)
 parser.add_argument("--G", type=int, default=1)
 parser.add_argument("--base-model", type=str, default="ncf")
@@ -49,9 +49,9 @@ evaluate_interval = args.evaluate_interval
 top_k_list = args.top_k_list
 data_dir = args.data_dir
 dataset_name = args.dataset_name
-alpha = args.alpha
-beta = args.beta
-eta = args.eta
+lambda1 = args.lambda1
+lambda2 = args.lambda2
+lambda3 = args.lambda3
 gamma = args.gamma
 G = args.G
 base_model = args.base_model
@@ -110,15 +110,15 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
 
             prop_pred_all, _, __ =  model.propensity_model(x_sampled)
             inv_prop_all = 1/torch.clip(nn.Sigmoid()(prop_pred_all), gamma, 1)
-            prop_loss = F.binary_cross_entropy(1/inv_prop_all, sub_obs) * alpha
+            prop_loss = F.binary_cross_entropy(1/inv_prop_all, sub_obs) * lambda1
             pred, _, __ = model.prediction_model(x_sampled)
             pred = nn.Sigmoid()(pred)
             ips_loss = -torch.mean((sub_entire_y * torch.log(pred + 1e-6) + (1-sub_entire_y) * torch.log(1 - pred + 1e-6)) * inv_prop_all * sub_obs)
             pred_all, _, __ = model.prediction_model(x_sampled)
-            pred_all_loss = F.binary_cross_entropy(1/inv_prop_all * nn.Sigmoid()(pred_all), sub_entire_y) * beta
+            pred_all_loss = F.binary_cross_entropy(1/inv_prop_all * nn.Sigmoid()(pred_all), sub_entire_y) * lambda2
             ones_all = torch.ones(len(inv_prop_all)).unsqueeze(-1).to(device)
             w_all = torch.divide(sub_obs,1/inv_prop_all) - torch.divide((ones_all-sub_obs),(ones_all-(1/inv_prop_all)))
-            bmse_loss = (torch.mean(w_all * pred_all))**2 * eta
+            bmse_loss = (torch.mean(w_all * pred_all))**2 * lambda3
             total_loss = prop_loss + pred_all_loss + ips_loss + bmse_loss
             epoch_prop_loss += prop_loss
             epoch_pred_all_loss += pred_all_loss

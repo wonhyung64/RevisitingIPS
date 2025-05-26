@@ -15,7 +15,7 @@ from module.utils import set_device, set_seed
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--alpha", type=float, default=2.)
+parser.add_argument("--lambda1", type=float, default=2.)
 parser.add_argument("--lr", type=float, default=1e-3)
 parser.add_argument("--weight-decay", type=float, default=1e-4)
 parser.add_argument("--batch-size", type=int, default=4096)
@@ -43,7 +43,7 @@ evaluate_interval = args.evaluate_interval
 top_k_list = args.top_k_list
 data_dir = args.data_dir
 dataset_name = args.dataset_name
-alpha = args.alpha
+lambda1 = args.lambda1
 base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
@@ -94,7 +94,7 @@ for epoch in range(1, num_epochs+1):
 
 
         pred, ctr, ctcvr = model(sub_x)
-        ctr_loss = F.binary_cross_entropy(nn.Sigmoid()(ctr), sub_t) * alpha
+        ctr_loss = F.binary_cross_entropy(nn.Sigmoid()(ctr), sub_t) * lambda1
         rec_loss = F.binary_cross_entropy(
             torch.nn.Sigmoid()(pred), sub_y, reduction="none") 
         rec_loss = (rec_loss * sub_t).mean()
