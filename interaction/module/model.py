@@ -151,7 +151,7 @@ class IpsV2(nn.Module):
         self.embedding_k = embedding_k
         self.depth = depth
         self.prediction_model = NCF(
-            num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, depth=self.depth *args, **kwargs)       
+            num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, depth=self.depth, *args, **kwargs)       
         self.propensity_model = LinearCF(
             num_users=self.num_users, num_items=self.num_items, embedding_k=self.embedding_k, *args, **kwargs)
 
