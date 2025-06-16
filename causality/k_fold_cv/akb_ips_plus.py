@@ -285,15 +285,15 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
             ndcg_y1_res = ndcg_func(pred_y1.squeeze(), x1_test, y1_test, top_k_list)
             ndcg_y1_dict: dict = {}
             for top_k in top_k_list:
-                ndcg_y1_dict[f"ndcg_y1_{top_k}"] = np.mean(ndcg_y1_res[f"ndcg_y1_{top_k}"])
+                ndcg_y1_dict[f"ndcg_y1_{top_k}"] = np.mean(ndcg_y1_res[f"ndcg_{top_k}"])
             recall_y1_res = recall_func(pred_y1.squeeze(), x1_test, y1_test, top_k_list)
             recall_y1_dict: dict = {}
             for top_k in top_k_list:
-                recall_y1_dict[f"recall_y1_{top_k}"] = np.mean(recall_y1_res[f"recall_y1_{top_k}"])
+                recall_y1_dict[f"recall_y1_{top_k}"] = np.mean(recall_y1_res[f"recall_{top_k}"])
             ap_y1_res = ap_func(pred_y1.squeeze(), x1_test, y1_test, top_k_list)
             ap_y1_dict: dict = {}
             for top_k in top_k_list:
-                ap_y1_dict[f"ap_y1_{top_k}"] = np.mean(ap_y1_res[f"ap_y1_{top_k}"])
+                ap_y1_dict[f"ap_y1_{top_k}"] = np.mean(ap_y1_res[f"ap_{top_k}"])
 
 
             nll_y0 = nn.BCELoss()(nn.Sigmoid()(pred_y0), torch.Tensor(y0_test).unsqueeze(-1).to(device))
@@ -303,15 +303,15 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
             ndcg_y0_res = ndcg_func(pred_y0.squeeze(), x0_test, y0_test, top_k_list)
             ndcg_y0_dict: dict = {}
             for top_k in top_k_list:
-                ndcg_y0_dict[f"ndcg_y0_{top_k}"] = np.mean(ndcg_y0_res[f"ndcg_y0_{top_k}"])
+                ndcg_y0_dict[f"ndcg_y0_{top_k}"] = np.mean(ndcg_y0_res[f"ndcg_{top_k}"])
             recall_y0_res = recall_func(pred_y0.squeeze(), x0_test, y0_test, top_k_list)
             recall_y0_dict: dict = {}
             for top_k in top_k_list:
-                recall_y0_dict[f"recall_y0_{top_k}"] = np.mean(recall_y0_res[f"recall_y0_{top_k}"])
+                recall_y0_dict[f"recall_y0_{top_k}"] = np.mean(recall_y0_res[f"recall_{top_k}"])
             ap_y0_res = ap_func(pred_y0.squeeze(), x0_test, y0_test, top_k_list)
             ap_y0_dict: dict = {}
             for top_k in top_k_list:
-                ap_y0_dict[f"ap_y0_{top_k}"] = np.mean(ap_y0_res[f"ap_y0_{top_k}"])
+                ap_y0_dict[f"ap_y0_{top_k}"] = np.mean(ap_y0_res[f"ap_{top_k}"])
 
 
             print(f"AUC_y1: {auc_y1}")
