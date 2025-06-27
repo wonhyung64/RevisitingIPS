@@ -87,7 +87,7 @@ experiments=(
 # "$TASK/esmm_plus.py --depth=2 --base-model=ncf --dataset-name=personalized --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --lambda1=2." # fin
 # "$TASK/multi_plus_ips.py --depth=2 --base-model=ncf --dataset-name=personalized --batch-size=4096 --lr=1e-2 --weight-decay=1e-4 --lambda1=0.01" # fin
 # "$TASK/multi_plus_naive.py --depth=2 --base-model=ncf --dataset-name=personalized --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --lambda1=2." # fin
-# "$TASK/escm2_plus_ips.py --depth=2 --base-model=ncf --dataset-name=personalized --batch-size=4096 --lr=1e-2--weight-decay=1e-4 --lambda1=0.01 --lambda2=0.001" # fin
+# "$TASK/escm2_plus_ips.py --depth=2 --base-model=ncf --dataset-name=personalized --batch-size=4096 --lr=1e-2 --weight-decay=1e-4 --lambda1=0.01 --lambda2=0.001" # fin
 # "$TASK/escm2_plus_naive.py --depth=2 --base-model=ncf --dataset-name=personalized --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --lambda1=2. --lambda2=0.001" # fin
 # "$TASK/v2_plus_ips.py --depth=2 --base-model=ncf --dataset-name=personalized --batch-size=4096 --lr=1e-2 --weight-decay=1e-4 --lambda1=1. --lambda2=2. --lambda3=0.1" # fin
 # "$TASK/v2_plus_naive.py --depth=2 --base-model=ncf --dataset-name=personalized --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --lambda1=2. --lambda2=1. --lambda3=0.1" # fin

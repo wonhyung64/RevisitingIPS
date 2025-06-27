@@ -195,17 +195,45 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
         if epoch % evaluate_interval == 0:
             model.eval()
             pred_y1, _, __ = model(x1_test_tensor)
+            nll_y1 = nn.BCELoss()(nn.Sigmoid()(pred_y1), torch.Tensor(y1_test).unsqueeze(-1).to(device))
+            nll_y1 = nll_y1.detach().cpu().item()
             pred_y1 = pred_y1.detach().cpu().numpy()
             auc_y1 = roc_auc_score(y1_test, pred_y1)
             accuracy_y1 = accuracy_score(y1_test.astype(int), np.where(sigmoid(pred_y1) > 0.5, 1, 0).squeeze())
             f1_y1 = f1_score(y1_test.astype(int), np.where(sigmoid(pred_y1) > 0.5, 1, 0).squeeze())
+            ndcg_y1_res = ndcg_func(pred_y1.squeeze(), x1_test, y1_test, [1,3,5,7,10])
+            ndcg_y1_dict: dict = {}
+            for top_k in [1,3,5,7,10]:
+                ndcg_y1_dict[f"ndcg_y1_{top_k}"] = np.mean(ndcg_y1_res[f"ndcg_{top_k}"])
+            recall_y1_res = recall_func(pred_y1.squeeze(), x1_test, y1_test, [1,3,5,7,10])
+            recall_y1_dict: dict = {}
+            for top_k in [1,3,5,7,10]:
+                recall_y1_dict[f"recall_y1_{top_k}"] = np.mean(recall_y1_res[f"recall_{top_k}"])
+            ap_y1_res = ap_func(pred_y1.squeeze(), x1_test, y1_test, [1,3,5,7,10])
+            ap_y1_dict: dict = {}
+            for top_k in [1,3,5,7,10]:
+                ap_y1_dict[f"ap_y1_{top_k}"] = np.mean(ap_y1_res[f"ap_{top_k}"])
 
 
             _, pred_y0, __ = model(x0_test_tensor)
+            nll_y0 = nn.BCELoss()(nn.Sigmoid()(pred_y0), torch.Tensor(y0_test).unsqueeze(-1).to(device))
+            nll_y0 = nll_y0.detach().cpu().item()
             pred_y0 = pred_y0.detach().cpu().numpy()
             auc_y0 = roc_auc_score(y0_test, pred_y0)
             accuracy_y0 = accuracy_score(y0_test.astype(int), np.where(sigmoid(pred_y0) > 0.5, 1, 0).squeeze())
             f1_y0 = f1_score(y0_test.astype(int), np.where(sigmoid(pred_y0) > 0.5, 1, 0).squeeze())
+            ndcg_y0_res = ndcg_func(pred_y0.squeeze(), x0_test, y0_test, [1,3,5,7,10])
+            ndcg_y0_dict: dict = {}
+            for top_k in [1,3,5,7,10]:
+                ndcg_y0_dict[f"ndcg_y0_{top_k}"] = np.mean(ndcg_y0_res[f"ndcg_{top_k}"])
+            recall_y0_res = recall_func(pred_y0.squeeze(), x0_test, y0_test, [1,3,5,7,10])
+            recall_y0_dict: dict = {}
+            for top_k in [1,3,5,7,10]:
+                recall_y0_dict[f"recall_y0_{top_k}"] = np.mean(recall_y0_res[f"recall_{top_k}"])
+            ap_y0_res = ap_func(pred_y0.squeeze(), x0_test, y0_test, [1,3,5,7,10])
+            ap_y0_dict: dict = {}
+            for top_k in [1,3,5,7,10]:
+                ap_y0_dict[f"ap_y0_{top_k}"] = np.mean(ap_y0_res[f"ap_{top_k}"])
 
 
             interaction_metric = {
@@ -241,6 +269,12 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
                 wandb_var.log(interaction_metric)
                 wandb_var.log(cdcg_dict)
                 wandb_var.log(cp_dict)
+                wandb_var.log(ndcg_y1_dict)
+                wandb_var.log(recall_y1_dict)
+                wandb_var.log(ap_y1_dict)
+                wandb_var.log(ndcg_y0_dict)
+                wandb_var.log(recall_y0_dict)
+                wandb_var.log(ap_y0_dict)
 
 
     if wandb_login:

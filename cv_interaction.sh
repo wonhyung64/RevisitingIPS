@@ -1,5 +1,5 @@
 #!/bin/bash
-#srun --cpus-per-task=8 -p gpu6 --gres=gpu:a10:4 --pty bash
+#srun --cpus-per-task=48 -p gpu6 --gres=gpu:a10:4 --pty bash
 
 
 TASK=interaction
