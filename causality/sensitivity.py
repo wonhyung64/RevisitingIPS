@@ -8,7 +8,7 @@ import scipy.sparse as sps
 from datetime import datetime
 from sklearn.metrics import roc_auc_score, accuracy_score, f1_score
 from sklearn.model_selection import KFold
-from module.model import SharedNCFPlus
+from module.model import SharedNCFPlus, SharedLinearCFPlus
 from module.dataset import load_data, generate_total_sample
 from module.utils import set_device, set_seed, sigmoid
 from module.metric import cdcg_func, cp_func
@@ -36,6 +36,7 @@ parser.add_argument("--propensity", type=str, default="true")
 parser.add_argument("--lambda1", type=float, default=1.)
 parser.add_argument("--device", type=str, default="none")
 parser.add_argument("--depth", type=int, default=0)
+parser.add_argument("--base-model", type=str, default="ncf")
 try:
     args = parser.parse_args()
 except:
@@ -60,6 +61,7 @@ expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device(device)
 depth = args.depth
+base_model = args.base_model
 
 
 x_train, x_test = load_data(data_dir, dataset_name)
@@ -118,7 +120,10 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
     x0_test_tensor = torch.LongTensor(x0_test).to(device)
 
 
-    model = SharedNCFPlus(num_users, num_items, embedding_k, depth)
+    if base_model == "ncf":
+        model = SharedNCFPlus(num_users, num_items, embedding_k, depth)
+    elif base_model == "linearcf":
+        model = SharedLinearCFPlus(num_users, num_items, embedding_k)
     model = model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
     inv_prop = torch.tensor([1.]).to(device)
