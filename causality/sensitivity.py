@@ -6,7 +6,7 @@ import numpy as np
 import torch.nn as nn
 import scipy.sparse as sps
 from datetime import datetime
-from sklearn.metrics import roc_auc_score, accuracy_score, f1_score
+from sklearn.metrics import roc_auc_score, accuracy_score, f1_score, ndcg_func, recall_func, ap_func
 from sklearn.model_selection import KFold
 from module.model import SharedNCFPlus, SharedLinearCFPlus
 from module.dataset import load_data, generate_total_sample
