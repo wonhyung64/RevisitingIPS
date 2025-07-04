@@ -40,13 +40,13 @@ experiments=(
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 )
@@ -88,13 +88,13 @@ experiments=(
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
    
-# "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
+"--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
 # "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
    
-# "--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
+"--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
 # "--embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
    
-# "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
+"--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
 # "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0."
 
 )
@@ -137,13 +137,13 @@ experiments=(
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
    
-# "--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
    
-# "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 )
@@ -185,23 +185,23 @@ experiments=(
 # "--embedding-k=64--depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=64--depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8--depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8--depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8--depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
    
-# "--embedding-k=8--base-model=mf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8--base-model=mf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8--base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
    
-# "--embedding-k=8--depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8--depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8--depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 )
 
 lambda1_options=(
-    # "--lambda1=2."
-    # "--lambda1=1."
-    # "--lambda1=0.1"
-    # "--lambda1=0.01"
-    # "--lambda1=0.001"
+    "--lambda1=2."
+    "--lambda1=1."
+    "--lambda1=0.1"
+    "--lambda1=0.01"
+    "--lambda1=0.001"
 )
 
 EXECUTION_FILE=$TASK/k_fold_cv/esmm.py
@@ -253,33 +253,33 @@ experiments=(
 # "--embedding-k=64 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=64 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --loss-type=naive --base-model=mf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --loss-type=naive --base-model=mf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --loss-type=naive --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=2 --loss-type=naive --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=2 --loss-type=naive --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=2 --loss-type=naive --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 )
 
 
 lambda1_options=(
-    # "--lambda1=2."
-    # "--lambda1=1."
-    # "--lambda1=0.1"
-    # "--lambda1=0.01"
-    # "--lambda1=0.001"
+    "--lambda1=2."
+    "--lambda1=1."
+    "--lambda1=0.1"
+    "--lambda1=0.01"
+    "--lambda1=0.001"
 )
 
 EXECUTION_FILE=$TASK/k_fold_cv/multi.py
@@ -331,32 +331,32 @@ experiments=(
 # "--embedding-k=64 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=64 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --loss-type=naive --base-model=mf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --loss-type=naive --base-model=mf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --loss-type=naive --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=2 --loss-type=naive --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=2 --loss-type=naive --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=2 --loss-type=naive --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 )
 
 lambda1_options=(
-    # "--lambda1=2."
-    # "--lambda1=1."
-    # "--lambda1=0.1"
-    # "--lambda1=0.01"
-    # "--lambda1=0.001"
+    "--lambda1=2."
+    "--lambda1=1."
+    "--lambda1=0.1"
+    "--lambda1=0.01"
+    "--lambda1=0.001"
 )
 
 lambda2_options=(
@@ -419,32 +419,32 @@ experiments=(
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=0  --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=0  --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0  --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
-
-# "--embedding-k=8  --base-model=mf --dataset-name=coat --batch-size=4096"
+# 
+"--embedding-k=8  --base-model=mf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8  --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=2  --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=2  --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=2  --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 )
 
 lambda1_options=(
-    # "--lambda1=2."
-    # "--lambda1=1."
-    # "--lambda1=0.1"
-    # "--lambda1=0.01"
-    # "--lambda1=0.001"
+    "--lambda1=2."
+    "--lambda1=1."
+    "--lambda1=0.1"
+    "--lambda1=0.01"
+    "--lambda1=0.001"
 )
 
 lambda2_options=(
