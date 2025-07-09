@@ -426,7 +426,7 @@ experiments=(
 "--embedding-k=8  --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
 # "--embedding-k=8 --depth=2  --base-model=ncf --dataset-name=coat --batch-size=4096"
-"--embedding-k=8 --depth=2  --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+# "--embedding-k=8 --depth=2  --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 # "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
