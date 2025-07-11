@@ -176,23 +176,23 @@ done
 
 experiments=(
 
-# "--embedding-k=64 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
-# "--embedding-k=64 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+# "--embedding-k=64--depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=64--depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
    
-# "--embedding-k=64 --base-model=mf --dataset-name=coat --batch-size=4096"
-# "--embedding-k=64 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
+# "--embedding-k=64--base-model=mf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=64--base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
    
-# "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
-# "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+# "--embedding-k=64--depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=64--depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
-# "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
-# "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+# "--embedding-k=8--depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=8--depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
    
-# "--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096"
-# "--embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
+# "--embedding-k=8--base-model=mf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=8--base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
    
-# "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
-# "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+# "--embedding-k=8--depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=8--depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 )
 
@@ -401,6 +401,15 @@ done
 
 experiments=(
 
+# "--embedding-k=64 --depth=0  --base-model=ncf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=64 --depth=0  --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+
+# "--embedding-k=64  --base-model=mf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=64  --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
+
+# "--embedding-k=64 --depth=2  --base-model=ncf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=64 --depth=2  --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+
 # "--embedding-k=64 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=64 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
@@ -409,6 +418,15 @@ experiments=(
 
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=64 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+
+# "--embedding-k=8 --depth=0  --base-model=ncf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8 --depth=0  --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+
+# "--embedding-k=8  --base-model=mf --dataset-name=coat --batch-size=4096"
+"--embedding-k=8  --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
+
+# "--embedding-k=8 --depth=2  --base-model=ncf --dataset-name=coat --batch-size=4096"
+# "--embedding-k=8 --depth=2  --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 # "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=coat --batch-size=4096"
 # "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
@@ -423,7 +441,7 @@ experiments=(
 
 lambda1_options=(
     # "--lambda1=2."
-    # "--lambda1=1."
+    "--lambda1=1."
     # "--lambda1=0.1"
     # "--lambda1=0.01"
     # "--lambda1=0.001"
@@ -447,7 +465,7 @@ lambda3_options=(
 
 
 
-EXECUTION_FILE=$TASK/k_fold_cv/ips_v2.py
+# EXECUTION_FILE=$TASK/k_fold_cv/ips_v2.py
 EXECUTION_FILE=$TASK/k_fold_cv/naive_v2.py
 for index in ${!experiments[*]}; do
     for index_l3 in ${!lambda3_options[*]}; do
