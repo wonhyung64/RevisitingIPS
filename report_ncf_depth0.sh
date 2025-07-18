@@ -33,12 +33,10 @@ experiments=(
 #emb8
 # "$TASK/ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-4 --weight-decay=1e-4" # fin
 # "$TASK/akb_ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-2 --weight-decay=1e-4 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0." # fin
+# "$TASK/naive.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-4 --weight-decay=1e-4" # fin
+# "$TASK/esmm.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --lambda1=2." # fin
 # "$TASK/multi_ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-4 --weight-decay=1e-4 --lambda1=0.01" # fin
 # "$TASK/multi_naive.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-4 --weight-decay=1e-4 --lambda1=0.1" # fin
-
-#cv1 re
-# "$TASK/naive.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e- --weight-decay=1e-"
-# "$TASK/esmm.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e- --weight-decay=1e- --lambda1="
 
 #cv2 
 # "$TASK/escm2_ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-4 --weight-decay=1e-4 --lambda1=0.001 --lambda2="
@@ -61,22 +59,20 @@ experiments=(
 # "$TASK/naive_v2.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6" # fin
 
 #emb8
+# "$TASK/ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4"
 # "$TASK/akb_ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0." # fin
+# "$TASK/naive.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-5"
+# "$TASK/esmm.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-2 --weight-decay=1e-6 --lambda1=2." fin
 # "$TASK/multi_ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4 --lambda1=0.001" # fin
 # "$TASK/multi_naive.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=0.001" # fin
 
 #cv1 re
-# "$TASK/ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e- --weight-decay=1e-"
-# "$TASK/naive.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e- --weight-decay=1e-"
-# "$TASK/esmm.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e- --weight-decay=1e- --lambda1="
+# "$TASK/naive_v2.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6"
 
 #cv2
 # "$TASK/escm2_ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-2 --weight-decay=1e-4 --lambda1=0.001 --lambda2="
 # "$TASK/escm2_naive.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-5 --lambda1=0.1 --lambda2="
 # "$TASK/ips_v2.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-4 --lambda1=2. --lambda2= --lambda3="
-
-# running 7/13 22:16
-# "$TASK/naive_v2.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6"
 
 )
 
