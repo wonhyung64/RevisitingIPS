@@ -23,7 +23,7 @@ lr_options=(
 )
 
 wd_options=(
-    # "--weight-decay=1e-4"
+    "--weight-decay=1e-4"
     "--weight-decay=1e-5"
     "--weight-decay=1e-6"
 )
@@ -197,11 +197,11 @@ experiments=(
 )
 
 lambda1_options=(
-    # "--lambda1=2."
-    # "--lambda1=1."
-    # "--lambda1=0.1"
-    # "--lambda1=0.01"
-    # "--lambda1=0.001"
+    "--lambda1=2."
+    "--lambda1=1."
+    "--lambda1=0.1"
+    "--lambda1=0.01"
+    "--lambda1=0.001"
 )
 
 EXECUTION_FILE=$TASK/k_fold_cv/esmm.py
@@ -347,14 +347,14 @@ experiments=(
 # "--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
 # "--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=coat --batch-size=4096"
-"--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+# "--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 )
 
 lambda1_options=(
     # "--lambda1=2."
     # "--lambda1=1."
-    "--lambda1=0.1"
+    # "--lambda1=0.1"
     # "--lambda1=0.01"
     # "--lambda1=0.001"
 )
@@ -417,13 +417,13 @@ experiments=(
 # "--embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192"
 
 # "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096"
-# "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
+"--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192"
 
 )
 
 lambda1_options=(
     # "--lambda1=2."
-    # "--lambda1=1."
+    "--lambda1=1."
     # "--lambda1=0.1"
     # "--lambda1=0.01"
     # "--lambda1=0.001"
@@ -447,7 +447,7 @@ lambda3_options=(
 
 
 
-EXECUTION_FILE=$TASK/k_fold_cv/ips_v2.py
+# EXECUTION_FILE=$TASK/k_fold_cv/ips_v2.py
 EXECUTION_FILE=$TASK/k_fold_cv/naive_v2.py
 for index in ${!experiments[*]}; do
     for index_l3 in ${!lambda3_options[*]}; do
