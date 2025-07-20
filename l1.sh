@@ -451,30 +451,24 @@ EXECUTION_FILE=$TASK/k_fold_cv/ips_v2.py
 for index in ${!experiments[*]}; do
     for index_l3 in ${!lambda3_options[*]}; do
         for index_l2 in ${!lambda2_options[*]}; do
-            for index_l1 in ${!lambda1_options[*]}; do
-                for index_wd in ${!wd_options[*]}; do
-                    for index_lr in ${!lr_options[*]}; do
 
-                        # 최대 병렬 프로세스가 다 돌고 있으면 대기
-                        while [ "$(check_jobs)" -ge "$MAX_JOBS" ]; do
-                            echo "Max jobs ($MAX_JOBS) running. Waiting..."
-                            sleep 1m
-                        done
-
-                        # GPU 할당 (round-robin)
-                        GPU_ID=$(( COUNTER % 4 ))   # 0,1,2,3 반복
-                        export CUDA_VISIBLE_DEVICES=$GPU_ID
-
-                        echo "Launching on GPU $GPU_ID: "
-                        echo $EXECUTION_FILE ${experiments[$index]} --data-dir=$TASK/data --random-seed=$RANDOM_SEED ${lambda3_options[$index_l3]} ${lambda2_options[$index_l2]} ${lambda1_options[$index_l1]} ${wd_options[$index_wd]} ${lr_options[$index_lr]} 
-                        $ENV $EXECUTION_FILE ${experiments[$index]} --data-dir=$TASK/data --random-seed=$RANDOM_SEED ${lambda3_options[$index_l3]} ${lambda2_options[$index_l2]} ${lambda1_options[$index_l1]} ${wd_options[$index_wd]} ${lr_options[$index_lr]} &
-
-                        (( COUNTER++ ))
-                        sleep 5
-
-                    done
-                done
+            # 최대 병렬 프로세스가 다 돌고 있으면 대기
+            while [ "$(check_jobs)" -ge "$MAX_JOBS" ]; do
+                echo "Max jobs ($MAX_JOBS) running. Waiting..."
+                sleep 1m
             done
+
+            # GPU 할당 (round-robin)
+            GPU_ID=$(( COUNTER % 4 ))   # 0,1,2,3 반복
+            export CUDA_VISIBLE_DEVICES=$GPU_ID
+
+            echo "Launching on GPU $GPU_ID: "
+            echo $EXECUTION_FILE ${experiments[$index]} --data-dir=$TASK/data --random-seed=$RANDOM_SEED ${lambda3_options[$index_l3]} ${lambda2_options[$index_l2]} 
+            $ENV $EXECUTION_FILE ${experiments[$index]} --data-dir=$TASK/data --random-seed=$RANDOM_SEED ${lambda3_options[$index_l3]} ${lambda2_options[$index_l2]} &
+
+            (( COUNTER++ ))
+            sleep 5
+
         done
     done
 done
