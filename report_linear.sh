@@ -64,14 +64,14 @@ experiments=(
 # "$TASK/naive.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6" # fin
 # "$TASK/esmm.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-2 --weight-decay=1e-6 --lambda1=1." # fin
 # "$TASK/multi_ips.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-5 --lambda1=0.01" # fin
-# "$TASK/multi_naive.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6 --lambda1=0.01"
+# "$TASK/multi_naive.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6 --lambda1=0.01" # fin
 
 # cv2
 # "$TASK/escm2_ips.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-5 --lambda1=2. --lambda2="
 # "$TASK/escm2_naive.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6 --lambda1=1. --lambda2="
+# "$TASK/ips_v2.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=0.001 --lambda2= --lambda3="
 
 # cv1 re
-# "$TASK/ips_v2.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e- --weight-decay=1e-"
 # "$TASK/naive_v2.py --embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e- --weight-decay=1e-"
 
 )

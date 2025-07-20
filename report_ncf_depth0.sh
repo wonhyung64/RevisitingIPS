@@ -66,13 +66,11 @@ experiments=(
 # "$TASK/multi_ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4 --lambda1=0.001" # fin
 # "$TASK/multi_naive.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=0.001" # fin
 
-#cv1 re
-# "$TASK/naive_v2.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-6"
-
 #cv2
 # "$TASK/escm2_ips.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-2 --weight-decay=1e-4 --lambda1=0.001 --lambda2="
 # "$TASK/escm2_naive.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-5 --lambda1=0.1 --lambda2="
 # "$TASK/ips_v2.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-4 --lambda1=2. --lambda2= --lambda3="
+# "$TASK/naive_v2.py --depth=0 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-4 --lambda1=2. --lambda2= --lambda3="
 
 )
 

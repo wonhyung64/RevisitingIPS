@@ -68,10 +68,8 @@ experiments=(
 # cv2
 # "$TASK/escm2_ips.py --depth=2 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-2 --weight-decay=1e-4 --lambda1=0.001 --lambda2="
 # "$TASK/escm2_naive.py --depth=2 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-5 --lambda1=2. --lambda2="
-
-# cv1 re
-# "$TASK/ips_v2.py --depth=2 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e- --weight-decay=1e- --lambda1= --lambda2= --lambda3="
-# "$TASK/naive_v2.py --depth=2 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e- --weight-decay=1e- --lambda1= --lambda2= --lambda3="
+# "$TASK/ips_v2.py --depth=2 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-2 --weight-decay=1e-6 --lambda1=1. --lambda2= --lambda3="
+# "$TASK/naive_v2.py --depth=2 --embedding-k=8 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4 --lambda1=1. --lambda2= --lambda3="
 
 
 )
