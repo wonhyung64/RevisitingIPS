@@ -490,7 +490,7 @@ experiments=(
 # "--embedding-k=8 --depth=0 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-4 --lambda1=2."
 
 # "--embedding-k=8 --base-model=mf --dataset-name=coat --batch-size=4096 --lr=1e-3 --weight-decay=1e-4 --lambda1=0.001"
-"--embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e6- --lambda1=2."
+"--embedding-k=8 --base-model=mf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=2."
 
 # "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=coat --batch-size=4096 --lr=1e-4 --weight-decay=1e-4 --lambda1=2."
 # "--embedding-k=8 --depth=2 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-4 --weight-decay=1e-4 --lambda1=1."
