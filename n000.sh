@@ -430,16 +430,16 @@ lambda1_options=(
 )
 
 lambda2_options=(
-    "--lambda2=2."
-    # "--lambda2=1."
-    "--lambda2=0.1"
+    # "--lambda2=2."
+    "--lambda2=1."
+    # "--lambda2=0.1"
     # "--lambda2=0.01"
     # "--lambda2=0.001"
 )
 
 lambda3_options=(
     "--lambda3=2."
-    "--lambda3=1."
+    # "--lambda3=1."
     "--lambda3=0.1"
     "--lambda3=0.01"
     "--lambda3=0.001"
@@ -447,7 +447,7 @@ lambda3_options=(
 
 
 
-EXECUTION_FILE=$TASK/k_fold_cv/ips_v2.py
+# EXECUTION_FILE=$TASK/k_fold_cv/ips_v2.py
 EXECUTION_FILE=$TASK/k_fold_cv/naive_v2.py
 for index in ${!experiments[*]}; do
     for index_l3 in ${!lambda3_options[*]}; do
