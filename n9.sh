@@ -43,7 +43,7 @@ experiments=(
 # "--embedding-k=8 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=original --batch-size=4096"
 # "--embedding-k=8 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=personalized --batch-size=4096"
 
-"--embedding-k=8 --loss-type=naive --base-model=mf --dataset-name=original --batch-size=4096"
+"--embedding-k=8 --loss-type=naive --base-model=linearcf --dataset-name=original --batch-size=4096"
 # "--embedding-k=8 --loss-type=naive --base-model=mf --dataset-name=personalized --batch-size=4096"
 
 # "--embedding-k=8 --depth=2 --loss-type=naive --base-model=ncf --dataset-name=original --batch-size=4096"
