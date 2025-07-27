@@ -192,8 +192,8 @@ experiments=(
 
 lambda1_options=(
     # "--lambda1=2."
-    # "--lambda1=1."
-    "--lambda1=0.1"
+    "--lambda1=1."
+    # "--lambda1=0.1"
     # "--lambda1=0.01"
     # "--lambda1=0.001"
 )
