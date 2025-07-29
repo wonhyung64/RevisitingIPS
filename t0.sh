@@ -230,11 +230,11 @@ done
 
 experiments=(
 
-#ips aa
+#ips
 # "--embedding-k=8 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=original --batch-size=4096"
-"--embedding-k=8 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=personalized --batch-size=4096"
+# "--embedding-k=8 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=personalized --batch-size=4096"
 
-# "--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=original --batch-size=4096"
+"--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=original --batch-size=4096"
 # "--embedding-k=8 --loss-type=ips --base-model=mf --dataset-name=personalized --batch-size=4096"
 
 # "--embedding-k=8 --depth=2 --loss-type=ips --base-model=ncf --dataset-name=original --batch-size=4096"
