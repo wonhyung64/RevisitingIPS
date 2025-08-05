@@ -20,7 +20,7 @@ lr_options=(
     "--lr=1e-3"
     # "--lr=1e-4"
 )
-
+#sa
 
 wd_options=(
     "--weight-decay=1e-4"
