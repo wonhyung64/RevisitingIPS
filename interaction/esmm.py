@@ -75,8 +75,9 @@ if wandb_login:
 x_train, x_test = load_data(data_dir, dataset_name)
 x_train, y_train = x_train[:,:-1], x_train[:,-1]
 x_test, y_test = x_test[:, :-1], x_test[:,-1]
-y_train = binarize(y_train)
-y_test = binarize(y_test)
+if not dataset_name == "KuaiRec":
+    y_train = binarize(y_train)
+    y_test = binarize(y_test)
 num_users = x_train[:,0].max()
 num_items = x_train[:,1].max()
 print(f"# user: {num_users}, # item: {num_items}")

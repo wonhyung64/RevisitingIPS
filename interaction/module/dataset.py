@@ -31,6 +31,18 @@ def load_data(data_dir:str, dataset_name:str):
         x_test = pd.read_csv(test_file).to_numpy()
         x_test = np.stack([x_test[:,0]+1, x_test[:,1]+1, x_test[:,2]], axis=-1)
 
+    elif dataset_name == "KuaiRec":
+        train_file = os.path.join(dataset_dir, "data/big_matrix.csv")
+        test_file = os.path.join(dataset_dir, "data/small_matrix.csv")
+        x_train = pd.read_csv(train_file)
+        x_train["interaction"] = x_train["watch_ratio"].map(lambda x: 1 if x >= 2. else 0)
+        x_train = x_train[["user_id", "video_id", "interaction"]].to_numpy()
+        x_train = np.stack([x_train[:,0]+1, x_train[:,1]+1, x_train[:,2]], axis=-1)
+        x_test = pd.read_csv(test_file)
+        x_test["interaction"] = x_test["watch_ratio"].map(lambda x: 1 if x >= 2. else 0)
+        x_test = x_test[["user_id", "video_id", "interaction"]].to_numpy()
+        x_test = np.stack([x_test[:,0]+1, x_test[:,1]+1, x_test[:,2]], axis=-1)
+
     print(f"Loaded from {dataset_name} dataset")
     print("[train] num data:", x_train.shape[0])
     print("[test]  num data:", x_test.shape[0])
@@ -58,3 +70,18 @@ def generate_total_sample(num_user:int, num_item:int):
         sample.extend([[i,j] for j in range(num_item)])
 
     return np.array(sample)
+
+
+if __name__ == "__main__":
+    data_dir = "./data"
+    dataset_name = "KuaiRec"
+
+    x_train, x_test = load_data(data_dir, dataset_name)
+    x_train, y_train = x_train[:,:-1], x_train[:,-1]
+    x_test, y_test = x_test[:, :-1], x_test[:,-1]
+
+    if not dataset_name == "KuaiRec":
+        y_train = binarize(y_train)
+        y_test = binarize(y_test)
+    
+    print(f"[user_id, item_id] / interaction: {x_test[0]} / {y_test[0]}")

@@ -64,7 +64,8 @@ depth = args.depth
 
 x_train, _ = load_data(data_dir, dataset_name)
 x_train_cv, y_train = x_train[:,:-1], x_train[:,-1]
-y_train_cv = binarize(y_train)
+if not dataset_name == "KuaiRec":
+    y_train_cv = binarize(y_train)
 num_users = x_train[:,0].max()
 num_items = x_train[:,1].max()
 print(f"# user: {num_users}, # item: {num_items}")
