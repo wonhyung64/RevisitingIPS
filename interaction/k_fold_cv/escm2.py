@@ -39,6 +39,7 @@ parser.add_argument("--lambda2", type=float, default=0.1)
 parser.add_argument("--G", type=int, default=1)
 parser.add_argument("--base-model", type=str, default="ncf")
 parser.add_argument("--depth", type=int, default=0)
+parser.add_argument("--cv-restrict", type=int, default=999)
 try:
     args = parser.parse_args()
 except:
@@ -64,6 +65,7 @@ expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
 set_seed(random_seed)
 device = set_device()
 depth = args.depth
+cv_restrict = args.cv_restrict
 
 
 x_train, x_test = load_data(data_dir, dataset_name)
@@ -77,6 +79,9 @@ print(f"# user: {num_users}, # item: {num_items}")
 
 kf = KFold(n_splits=4, shuffle=True, random_state=random_seed)
 for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
+    if cv_restrict != 999:
+        if cv_num != cv_restrict:
+            continue
 
 
     wandb_login = False
