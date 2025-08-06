@@ -12,7 +12,8 @@ COUNTER=0 # 전체 제출 카운터
 
 TASK=interaction
 # ENV=python
-ENV=/home1/wonhyung64/anaconda3/envs/openmmlab/bin/python3
+# ENV=/home1/wonhyung64/anaconda3/envs/openmmlab/bin/python3
+ENV=/home2/wotjd1410/anaconda3/envs/synthetic/bin/python3
 RANDOM_SEED=0
 CV_RESTRICT=1
 
@@ -45,6 +46,8 @@ for index in ${!experiments[*]}; do
                 echo "Max jobs ($MAX_JOBS) running. Waiting..."
                 sleep 1m
             done
+
+            wandb login a1f59c7a0e53eed9b11d25edae53fdbe676fb53a
 
             # GPU 할당 (round-robin)
             GPU_ID=$(( COUNTER % 4 ))   # 0,1,2,3 반복

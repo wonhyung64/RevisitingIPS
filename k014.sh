@@ -12,8 +12,8 @@ COUNTER=0 # 전체 제출 카운터
 
 TASK=interaction
 # ENV=python
-# ENV=/home1/wonhyung64/anaconda3/envs/openmmlab/bin/python3
-ENV=/home2/shoon06/miniconda3/envs/tabsyn/bin/python3
+ENV=/home1/wonhyung64/anaconda3/envs/openmmlab/bin/python3
+# ENV=/home2/wotjd1410/anaconda3/envs/synthetic/bin/python3
 RANDOM_SEED=0
 CV_RESTRICT=0
 
@@ -34,7 +34,7 @@ wd_options=(
 experiments=(
 
 # "--embedding-k=64 --depth=0 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
-"--embedding-k=64 --base-model=mf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
+# "--embedding-k=64 --base-model=mf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
 )
 EXECUTION_FILE=$TASK/k_fold_cv/ips.py
 for index in ${!experiments[*]}; do
@@ -46,8 +46,6 @@ for index in ${!experiments[*]}; do
                 echo "Max jobs ($MAX_JOBS) running. Waiting..."
                 sleep 1m
             done
-
-            wandb login a1f59c7a0e53eed9b11d25edae53fdbe676fb53a
 
             # GPU 할당 (round-robin)
             GPU_ID=$(( COUNTER % 4 ))   # 0,1,2,3 반복
@@ -136,7 +134,7 @@ done
 experiments=(
 
 # "--embedding-k=64 --depth=0 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
-# "--embedding-k=64 --base-model=mf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
+"--embedding-k=64 --base-model=mf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
 
 )
 
@@ -144,7 +142,7 @@ lambda1_options=(
     # "--lambda1=2."
     # "--lambda1=1."
     # "--lambda1=0.1"
-    # "--lambda1=0.01"
+    "--lambda1=0.01"
     # "--lambda1=0.001"
 )
 
@@ -159,6 +157,8 @@ for index in ${!experiments[*]}; do
                     echo "Max jobs ($MAX_JOBS) running. Waiting..."
                     sleep 1m
                 done
+
+                wandb login a1f59c7a0e53eed9b11d25edae53fdbe676fb53a
 
                 # GPU 할당 (round-robin)
                 GPU_ID=$(( COUNTER % 4 ))   # 0,1,2,3 반복
