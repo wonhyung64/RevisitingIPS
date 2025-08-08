@@ -138,17 +138,22 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
             if loss_type == "ips":
                 inv_prop = 1/torch.nn.Sigmoid()(ctr).detach()
             ctr_loss = F.binary_cross_entropy(nn.Sigmoid()(ctr), sub_t) * lambda1
-            print(f"here ctr {ctr_loss}")
+            if ctr_loss < 0:
+                print(f"here ctr {ctr_loss}")
+                ctr_npy = ctr.detach().cpu().numpy()
+                sub_t_npy = sub_t.detach().cpu().numpy()
+                print(ctr_npy[(ctr_npy<0) | (ctr_npy>1)])
+                print(sub_t_npy[(sub_t_npy!=1) | (sub_t_npy!=0)])
             rec_loss = F.binary_cross_entropy(
                 torch.nn.Sigmoid()(pred), sub_y, weight=inv_prop, reduction='none') 
             
             rec_loss = (rec_loss * sub_t).mean()
-            print(f"here rec {rec_loss}")
+            # print(f"here rec {rec_loss}")
             epoch_rec_loss += rec_loss
             epoch_ctr_loss += ctr_loss
             total_loss = rec_loss + ctr_loss
 
-            print(f"here total {total_loss}")
+            # print(f"here total {total_loss}")
             epoch_total_loss += total_loss
             optimizer.zero_grad()
             total_loss.backward()
