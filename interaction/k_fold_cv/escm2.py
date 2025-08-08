@@ -103,7 +103,9 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
     x_test = x_train_cv[test_idx]
     y_test = y_train_cv[test_idx]
     obs = sps.csr_matrix((np.ones(len(y_train)), (x_train[:, 0]-1, x_train[:, 1]-1)), shape=(num_users, num_items), dtype=np.float32).toarray().reshape(-1)
+    obs = binarize(obs, 1.)
     y_entire = sps.csr_matrix((y_train, (x_train[:, 0]-1, x_train[:, 1]-1)), shape=(num_users, num_items), dtype=np.float32).toarray().reshape(-1)
+    y_entire = binarize(y_entire, 1.)
     x_all = generate_total_sample(num_users, num_items)
     num_samples = len(x_all)
     total_batch = num_samples // batch_size

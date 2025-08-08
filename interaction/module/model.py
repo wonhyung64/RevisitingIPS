@@ -191,6 +191,8 @@ class NCF_AKBIPS_Exp(nn.Module):
             self.epsilon = nn.Parameter(torch.rand(1,4096)) 
         elif dataset_name == "yahoo_r3":
             self.epsilon = nn.Parameter(torch.rand(1,8192)) 
+        elif dataset_name == "KuaiRec":
+            self.epsilon = nn.Parameter(torch.rand(1,8192)) 
 
     def get_embedding(self, x):
         user_idx = x[:,0]
@@ -227,6 +229,8 @@ class MF_AKBIPS_Exp(nn.Module):
         if dataset_name == "coat":
             self.epsilon = nn.Parameter(torch.rand(1,4096)) 
         elif dataset_name == "yahoo_r3":
+            self.epsilon = nn.Parameter(torch.rand(1,8192)) 
+        elif dataset_name == "KuaiRec":
             self.epsilon = nn.Parameter(torch.rand(1,8192)) 
 
     def get_embedding(self, x):

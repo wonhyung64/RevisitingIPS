@@ -70,18 +70,3 @@ def generate_total_sample(num_user:int, num_item:int):
         sample.extend([[i,j] for j in range(num_item)])
 
     return np.array(sample)
-
-
-if __name__ == "__main__":
-    data_dir = "./data"
-    dataset_name = "KuaiRec"
-
-    x_train, x_test = load_data(data_dir, dataset_name)
-    x_train, y_train = x_train[:,:-1], x_train[:,-1]
-    x_test, y_test = x_test[:, :-1], x_test[:,-1]
-
-    if not dataset_name == "KuaiRec":
-        y_train = binarize(y_train)
-        y_test = binarize(y_test)
-    
-    print(f"[user_id, item_id] / interaction: {x_test[0]} / {y_test[0]}")
