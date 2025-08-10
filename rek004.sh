@@ -12,9 +12,9 @@ COUNTER=0 # 전체 제출 카운터
 
 TASK=interaction
 # ENV=python
-# ENV=/home1/wonhyung64/anaconda3/envs/openmmlab/bin/python3
+ENV=/home1/wonhyung64/anaconda3/envs/openmmlab/bin/python3
 # ENV=/home2/wotjd1410/anaconda3/envs/synthetic/bin/python3
-ENV=/home1/shoon06/miniconda3/envs/tabsyn/bin/python
+# ENV=/home1/shoon06/miniconda3/envs/tabsyn/bin/python
 RANDOM_SEED=0
 CV_RESTRICT=0
 
