@@ -15,7 +15,7 @@ TASK=interaction
 ENV=/home1/wonhyung64/anaconda3/envs/openmmlab/bin/python3
 # ENV=/home2/wotjd1410/anaconda3/envs/synthetic/bin/python3
 RANDOM_SEED=0
-CV_RESTRICT=0
+CV_RESTRICT=1
 
 
 lr_options=(
@@ -291,7 +291,7 @@ experiments=(
 #
 lambda1_options=(
     "--lambda1=2."
-    "--lambda1=1."
+    # "--lambda1=1."
     # "--lambda1=0.1"
     # "--lambda1=0.01"
     # "--lambda1=0.001"
