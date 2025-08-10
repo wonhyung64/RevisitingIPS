@@ -15,7 +15,7 @@ TASK=interaction
 ENV=/home1/wonhyung64/anaconda3/envs/openmmlab/bin/python3
 # ENV=/home2/wotjd1410/anaconda3/envs/synthetic/bin/python3
 RANDOM_SEED=0
-CV_RESTRICT=0
+CV_RESTRICT=1
 
 
 lr_options=(
@@ -284,7 +284,7 @@ done
 
 experiments=(
 
-"--embedding-k=64 --depth=0 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
+# "--embedding-k=64 --depth=0 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
 # "--embedding-k=64 --base-model=mf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
 
 )
@@ -294,7 +294,7 @@ lambda1_options=(
     # "--lambda1=1."
     # "--lambda1=0.1"
     # "--lambda1=0.01"
-    "--lambda1=0.001"
+    # "--lambda1=0.001"
 )
 
 lambda2_options=(

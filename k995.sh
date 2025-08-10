@@ -288,13 +288,13 @@ experiments=(
 # "--embedding-k=64 --base-model=mf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
 
 )
-#
+
 lambda1_options=(
-    "--lambda1=2."
+    # "--lambda1=2."
     # "--lambda1=1."
     # "--lambda1=0.1"
     # "--lambda1=0.01"
-    # "--lambda1=0.001"
+    "--lambda1=0.001"
 )
 
 lambda2_options=(
@@ -359,7 +359,7 @@ lambda1_options=(
     # "--lambda1=1."
     # "--lambda1=0.1"
     # "--lambda1=0.01"
-    "--lambda1=0.001"
+    # "--lambda1=0.001"
 )
 
 lambda2_options=(
