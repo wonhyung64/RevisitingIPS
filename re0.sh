@@ -180,10 +180,10 @@ done
 
 experiments=(
 
-"--embedding-k=64 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
+# "--embedding-k=64 --depth=0 --loss-type=naive --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
 # "--embedding-k=64 --loss-type=naive --base-model=mf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
 
-"--embedding-k=64 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
+# "--embedding-k=64 --depth=0 --loss-type=ips --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
 # "--embedding-k=64 --loss-type=ips --base-model=mf --dataset-name=KuaiRec --batch-size=8192 --num-epochs=500"
 
 )
