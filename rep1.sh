@@ -73,7 +73,7 @@ experiments=(
 #KuaiRec
 #emb64
 # "$TASK/ips.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --lr=1e-4 --weight-decay=1e-4" # fin
-# "$TASK/naive.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6" # fin
+"$TASK/naive.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --lr=1e-3 --weight-decay=1e-6" # fin
 # "$TASK/multi_naive.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=1." # fin
 # "$TASK/esmm.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=1."  # fin
 
@@ -87,7 +87,7 @@ experiments=(
 
 )
 
-for RANDOM_SEED in {0..9}; do
+for RANDOM_SEED in {0..3}; do
     for index in ${!experiments[*]}; do
         # 최대 병렬 프로세스가 다 돌고 있으면 대기
         while [ "$(check_jobs)" -ge "$MAX_JOBS" ]; do
@@ -170,23 +170,23 @@ experiments=(
 
 )
 
-for RANDOM_SEED in {0..9}; do
-    for index in ${!experiments[*]}; do
-        # 최대 병렬 프로세스가 다 돌고 있으면 대기
-        while [ "$(check_jobs)" -ge "$MAX_JOBS" ]; do
-            echo "Max jobs ($MAX_JOBS) running. Waiting..."
-            sleep 1m
-        done
+# for RANDOM_SEED in {0..9}; do
+#     for index in ${!experiments[*]}; do
+#         # 최대 병렬 프로세스가 다 돌고 있으면 대기
+#         while [ "$(check_jobs)" -ge "$MAX_JOBS" ]; do
+#             echo "Max jobs ($MAX_JOBS) running. Waiting..."
+#             sleep 1m
+#         done
 
-        # GPU 할당 (round-robin)
-        GPU_ID=$(( COUNTER % 4 ))   # 0,1,2,3 반복
-        export CUDA_VISIBLE_DEVICES=$GPU_ID
+#         # GPU 할당 (round-robin)
+#         GPU_ID=$(( COUNTER % 4 ))   # 0,1,2,3 반복
+#         export CUDA_VISIBLE_DEVICES=$GPU_ID
 
-        echo "Launching on GPU $GPU_ID: "
-        echo ${experiments[$index]} --data-dir=$TASK/data --random-seed=$RANDOM_SEED 
-        $ENV ${experiments[$index]} --data-dir=$TASK/data --random-seed=$RANDOM_SEED &
+#         echo "Launching on GPU $GPU_ID: "
+#         echo ${experiments[$index]} --data-dir=$TASK/data --random-seed=$RANDOM_SEED 
+#         $ENV ${experiments[$index]} --data-dir=$TASK/data --random-seed=$RANDOM_SEED &
 
-        (( COUNTER++ ))
-        sleep 5
-    done
-done
+#         (( COUNTER++ ))
+#         sleep 5
+#     done
+# done
