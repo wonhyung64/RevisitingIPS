@@ -115,16 +115,16 @@ experiments=(
 # "$TASK/v2_plus_naive.py --embedding-k=64 --base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-5 --lambda1=2. --lambda2=1. --lambda3=0.01" # fin
 
 #emb8
-# "$TASK/ips_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-6 --weight-decay=1e-2 --propensity=pred" 
-# "$TASK/akb_ips_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-6 --G=1 --lr2=0.05 --lr3=0.05 --lamb2=0. --lamb3=0. --gamma=1. --J=3 --C=1e-5" 
-# "$TASK/naive_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-3 --weight-decay=1e-5" 
-# "$TASK/esmm_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-3 --weight-decay=1e-5 --lambda1=0.1" 
-# "$TASK/multi_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-4 --lambda1=0.001 --propensity=pred" 
-# "$TASK/multi_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-5 --lambda1=2." 
-# "$TASK/escm2_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-4 --lambda1=1. --lambda2=2. --propensity=pred" 
-# "$TASK/escm2_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-6 --lambda1=2. --lambda2=1." 
-# "$TASK/v2_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-3 --weight-decay=1e-4 --lambda1=0.001 --lambda2=1. --lambda3=0.001 --propensity=pred" 
-# "$TASK/v2_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e-4 --weight-decay=1e-5 --lambda1=2. --lambda2=1. --lambda3=0.01" 
+# "$TASK/ips_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e- --propensity=pred" 
+# "$TASK/akb_ips_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e- --G=1 --lr2=0.05 --lr3=0.05 --lamb2=0. --lamb3=0. --gamma=1. --J=3 --C=1e-5" 
+# "$TASK/naive_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e-" 
+# "$TASK/esmm_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e- --lambda1=" 
+# "$TASK/multi_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e- --lambda1= --propensity=pred" 
+# "$TASK/multi_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e- --lambda1=" 
+# "$TASK/escm2_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e- --lambda1= --lambda2= --propensity=pred" 
+# "$TASK/escm2_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e- --lambda1= --lambda2=" 
+# "$TASK/v2_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e- --lambda1= --lambda2= --lambda3= --propensity=pred" 
+# "$TASK/v2_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=original --lr=1e- --weight-decay=1e- --lambda1= --lambda2= --lambda3=" 
 
 
 #person
@@ -141,16 +141,16 @@ experiments=(
 # "$TASK/v2_plus_naive.py --embedding-k=64 --base-model=linearcf --dataset-name=personalized --lr=1e-4 --weight-decay=1e-5 --lambda1=2. --lambda2=2. --lambda3=2." # fin
 
 #emb8
-# "$TASK/ips_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-6 --weight-decay=1e-2 --propensity=pred" 
-# "$TASK/akb_ips_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-4 --weight-decay=1e-6 --G=1 --lr2=0.05 --lr3=0.05 --lamb2=0. --lamb3=0. --gamma=1. --J=3 --C=1e-5" 
-# "$TASK/naive_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5" 
-# "$TASK/esmm_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5 --lambda1=1." 
-# "$TASK/multi_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-4 --weight-decay=1e-4 --lambda1=0.001 --propensity=pred" 
-# "$TASK/multi_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-6 --lambda1=2." 
-# "$TASK/escm2_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5 --lambda1=1. --lambda2=1." 
-# "$TASK/escm2_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-5 --lambda1=0.1 --lambda2=1. --propensity=pred" 
-# "$TASK/v2_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-3 --weight-decay=1e-4 --lambda1=0.001 --lambda2=0.1 --lambda3=2. --propensity=pred" 
-# "$TASK/v2_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e-4 --weight-decay=1e-5 --lambda1=2. --lambda2=2. --lambda3=2." 
+# "$TASK/ips_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e- --propensity=pred" 
+# "$TASK/akb_ips_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e- --G=1 --lr2=0.05 --lr3=0.05 --lamb2=0. --lamb3=0. --gamma=1. --J=3 --C=1e-5" 
+# "$TASK/naive_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e-" 
+# "$TASK/esmm_plus.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e- --lambda1=" 
+# "$TASK/multi_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e- --lambda1= --propensity=pred" 
+# "$TASK/multi_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e- --lambda1=" 
+# "$TASK/escm2_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e- --lambda1= --lambda2=" 
+# "$TASK/escm2_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e- --lambda1= --lambda2= --propensity=pred" 
+# "$TASK/v2_plus_ips.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e- --lambda1= --lambda2= --lambda3= --propensity=pred" 
+# "$TASK/v2_plus_naive.py --embedding-k=8 --base-model=linearcf --dataset-name=personalized --lr=1e- --weight-decay=1e- --lambda1= --lambda2= --lambda3=" 
 
 )
 

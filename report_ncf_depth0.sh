@@ -73,9 +73,9 @@ experiments=(
 #KuaiRec
 #emb64
 # "$TASK/ips.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --lr=1e-4 --weight-decay=1e-4" # fin
-# "$TASK/naive.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6" # fin
-# "$TASK/multi_naive.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=1." # fin
-# "$TASK/esmm.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=1."  # fin
+# "$TASK/naive.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --lr=1e-3 --weight-decay=1e-6" # fin
+# "$TASK/multi_naive.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=1." # fin
+# "$TASK/esmm.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=1."  # fin
 
 # "$TASK/akb_ips.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e- --weight-decay=1e- --G=1 --lr2=0.05 --lr3=0.05 --J=3 --gamma=1. --C=1e-5 --lamb2=0. --lamb3=0." 
 # "$TASK/multi_ips.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e- --weight-decay=1e- --lambda1=" 
