@@ -77,7 +77,7 @@ experiments=(
 # "$TASK/multi_naive.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=1." # fin
 # "$TASK/esmm.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=1."  # fin
 
-"$TASK/multi_ips.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-5 --lambda1=0.001" # fin
+"$TASK/multi_ips.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=KuaiRec --batch-size=8192 --lr=1e-3 --weight-decay=1e-5 --lambda1=0.001" # fin
 
 # cv2
 # "$TASK/escm2_naive.py --depth=0 --embedding-k=64 --base-model=ncf --dataset-name=yahoo_r3 --batch-size=8192 --lr=1e-3 --weight-decay=1e-6 --lambda1=1. --lambda2=" 
