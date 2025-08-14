@@ -209,7 +209,7 @@ for index in ${!experiments[*]}; do
 
                 # GPU 할당 (round-robin)
                 GPU_ID=$(( COUNTER % 4 ))   # 0,1,2,3 반복
-                export CUDA_VISIBLE_DEVICES=$GPU_ID
+                export CUDA_VISIBLE_DEVICES=3
 
                 echo "Launching on GPU $GPU_ID: "
                 echo $EXECUTION_FILE ${experiments[$index]} --data-dir=$TASK/data --random-seed=$RANDOM_SEED ${lambda1_options[$index_l1]} ${wd_options[$index_wd]} ${lr_options[$index_lr]} --cv-restrict=$CV_RESTRICT 
