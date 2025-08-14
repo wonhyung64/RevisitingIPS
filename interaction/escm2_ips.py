@@ -57,6 +57,7 @@ lambda2 = args.lambda2
 G = args.G
 base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
+expt_name = f"escm2_ips_interaction_{expt_num}"
 set_seed(random_seed)
 device = set_device()
 depth = args.depth
@@ -71,7 +72,6 @@ if wandb_login:
     configs = vars(args)
     configs["device"] = device
     wandb_var = wandb.init(project="no_ips_journal", config=configs)
-    expt_name = f"escm2_ips_interaction_{expt_num}"
     wandb.run.name = expt_name
 
 

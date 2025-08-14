@@ -52,6 +52,7 @@ data_dir = args.data_dir
 dataset_name = args.dataset_name
 base_model = args.base_model
 expt_num = f'{datetime.now().strftime("%y%m%d_%H%M%S_%f")}'
+expt_name = f"cv_single_naive_interaction_{expt_num}"
 set_seed(random_seed)
 device = set_device()
 depth = args.depth
@@ -84,7 +85,6 @@ for cv_num, (train_idx, test_idx) in enumerate(kf.split(x_train)):
         configs["device"] = device
         configs["cv_num"] = cv_num
         wandb_var = wandb.init(project="no_ips_journal", config=configs)
-        expt_name = f"cv_single_naive_interaction_{expt_num}"
         wandb.run.name = expt_name
 
 
