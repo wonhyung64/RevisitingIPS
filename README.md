@@ -3,7 +3,7 @@
 
 ### 1. Preparation
 * All package dependencies and their versions for reproducing our experimental environment are listed in `requirements.txt` file.
-* The ***KuaiRec*** dataset is available for download via the provided [Google Drive](https://drive.google.com/file/d/1qe5hOSBxzIuxBb1G_Ih5X-O65QElollE/view) or the official release page `https://kuairec.com/`.
+* The ***KuaiRec*** dataset is available for download via the provided [Google Drive](https://drive.google.com/file/d/1qe5hOSBxzIuxBb1G_Ih5X-O65QElollE/view) or the official release page (https://kuairec.com).
 ```
 no_ips-0532
 ├──interaction/
