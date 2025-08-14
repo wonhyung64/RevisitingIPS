@@ -110,7 +110,7 @@ experiments=(
 
 )
 
-for RANDOM_SEED in {0..3}; do
+for RANDOM_SEED in {4..5}; do
     for index in ${!experiments[*]}; do
         # 최대 병렬 프로세스가 다 돌고 있으면 대기
         while [ "$(check_jobs)" -ge "$MAX_JOBS" ]; do
