@@ -49,12 +49,3 @@ report_fig3.sh
 ex_interaction.ipynb
 ex_causality.ipynb
 ```
-
-### 4. For the purpose of paper review, we have made the experimental data publicly available. For access to the original data sources, please refer to the following:
-
-[1] Tobias Schnabel, Adith Swaminathan, Ashudeep Singh, Navin Chandak, and Thorsten Joachims. 2016. Recommendations as treatments: debiasing learning and evaluation. In Proceedings of the 33rd International Conference on International Conference on Machine Learning - Volume 48 (New York, NY, USA) (ICML’16). JMLR.org, 1670–1679.
-
-[2] Masahiro Sato, Sho Takemori, Janmajay Singh, and Tomoko Ohkuma. 2020. Unbiased Learning for the Causal Effect of Recommendation. In Proceedings of the 14th ACM Conference on Recommender Systems (Virtual Event, Brazil) (RecSys ’20). Association for Computing Machinery, New York, NY, USA, 378–387. https://doi.org/10.1145/3383313.3412261
-
-[3] Benjamin M. Marlin and Richard S. Zemel. 2009. Collaborative prediction and ranking with non-random missing data. In Proceedings of the Third ACM Conference on Recommender Systems (New York, New York, USA) (RecSys ’09). Association for Computing Machinery, New York, NY, USA, 5–12. https://doi.org/10.1145/1639714.1639717
-
