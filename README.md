@@ -35,10 +35,9 @@ no_ips-0532
 * The following files reproduce the main results and include all the hyperparameter settings.
 ```
 report_table1.sh
-report_table2.sh
 report_table3.sh
-report_table4_interaction.sh
-report_table4_causality.sh
+report_table5.sh
+report_table6
 report_fig3.sh
 ```
 
