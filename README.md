@@ -5,7 +5,7 @@
 * All package dependencies and their versions for reproducing our experimental environment are listed in `requirements.txt` file.
 * The ***KuaiRec*** dataset is available for download via the provided [Google Drive](https://drive.google.com/file/d/1qe5hOSBxzIuxBb1G_Ih5X-O65QElollE/view) or the official release page (https://kuairec.com).
 ```
-no_ips-0532
+no_ips-0531
 ├──interaction/
 │   └──data/
 │      ├──KuaiRec/
@@ -22,7 +22,7 @@ no_ips-0532
 * Due to storage limitations, `DunnHumby: Original, Personalized` datasets need to be downloded at [anoymous github](https://anonymous.4open.science/r/dunn_cat_mailer_10_10_1_1/).
 * Data Organization for Experiments of Causality-based Recommendation:
 ```
-no_ips-0532
+no_ips-0531
 ├──causality/
 │   └──data/
 │      └──dunn_cat_mailer_10_10_1_1/
