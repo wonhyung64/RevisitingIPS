@@ -1,5 +1,6 @@
-### Simulation codes for
 # ***Revisiting IPS in Recommendation Models: Unveiling Its Impact on Model Performance***
+This repository is the official implementation of ***Revisiting IPS in Recommendation Models: Unveiling Its Impact on Model Performance*** with pytorch.
+
 
 ### 1. Preparation
 * All package dependencies and their versions for reproducing our experimental environment are listed in `requirements.txt` file.
