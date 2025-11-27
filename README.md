@@ -19,7 +19,7 @@ no_ips-0531
 ├──...
 ```
 
-* Due to storage limitations, `DunnHumby: Original, Personalized` datasets need to be downloded at [anoymous github](https://anonymous.4open.science/r/dunn_cat_mailer_10_10_1_1/).
+* Due to storage limitations, `DunnHumby: Original, Personalized` datasets need to be downloded at [here](https://github.com/wonhyung64/dunnhumby).
 * Data Organization for Experiments of Causality-based Recommendation:
 ```
 no_ips-0531
