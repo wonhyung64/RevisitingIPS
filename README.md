@@ -65,3 +65,6 @@ report_fig3.sh
 ex_interaction.ipynb
 ex_causality.ipynb
 ```
+
+
+This research was supported by the National Research Foundation of Korea(NRF) grant funded by the Korea government(MSIT) (NO. RS-2022-NR068754)
